@@ -10,299 +10,299 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 body {
-    font-family: 'Inter', sans-serif;
-    background-image: url('https://i.ibb.co/2Fh85Yq/1727275510636.png');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
+   font-family: 'Inter', sans-serif;
+   background-image: url('https://i.ibb.co/2Fh85Yq/1727275510636.png');
+   background-size: cover;
+   background-position: center;
+   min-height: 100vh;
 }
 
 .tab {
-    cursor: pointer;
-    padding: 12px 15px;
-    border: 1px solid #e2e8f0;
-    background-color: #f8fafc;
-    transition: all 0.3s ease;
-    text-align: center;
-    font-weight: 500;
-    border-radius: 0.375rem;
-    margin-bottom: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50px;
+   cursor: pointer;
+   padding: 12px 15px;
+   border: 1px solid #e2e8f0;
+   background-color: #f8fafc;
+   transition: all 0.3s ease;
+   text-align: center;
+   font-weight: 500;
+   border-radius: 0.375rem;
+   margin-bottom: 4px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 50px;
 }
 
 .tab.active {
-    background-color: #3b82f6;
-    color: white;
-    border-color: #3b82f6;
-    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+   background-color: #3b82f6;
+   color: white;
+   border-color: #3b82f6;
+   box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
 }
 
 .tab:hover:not(.active) {
-    background-color: #e2e8f0;
-    transform: translateY(-1px);
+   background-color: #e2e8f0;
+   transform: translateY(-1px);
 }
 
 @media (max-width: 640px) {
-    .tab {
-        font-size: 0.875rem;
-        padding: 10px 8px;
-    }
+   .tab {
+       font-size: 0.875rem;
+       padding: 10px 8px;
+   }
 }
 
 .tab-content {
-    display: none;
+   display: none;
 }
 
 .tab-content.active {
-    display: block;
+   display: block;
 }
 
 .signature-pad {
-    border: 1px solid #e2e8f0;
-    background-color: #f8f8f8;
-    border-radius: 0.375rem;
-    touch-action: none;
+   border: 1px solid #e2e8f0;
+   background-color: #f8f8f8;
+   border-radius: 0.375rem;
+   touch-action: none;
 }
 
 .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-    width: 100%;
-    max-width: 100%;
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 4px;
+   width: 100%;
+   max-width: 100%;
 }
 
 .calendar-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-    margin-bottom: 4px;
-    width: 100%;
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 4px;
+   margin-bottom: 4px;
+   width: 100%;
 }
 
 .calendar-day {
-    text-align: center;
-    padding: 10px 5px;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    font-size: 14px;
-    border: 1px solid #e2e8f0;
-    transition: all 0.2s ease;
+   text-align: center;
+   padding: 10px 5px;
+   cursor: pointer;
+   border-radius: 0.25rem;
+   font-size: 14px;
+   border: 1px solid #e2e8f0;
+   transition: all 0.2s ease;
 }
 
 .calendar-day:hover {
-    background-color: #e2e8f0;
-    transform: translateY(-1px);
+   background-color: #e2e8f0;
+   transform: translateY(-1px);
 }
 
 .calendar-day.selected {
-    background-color: #3b82f6;
-    color: white;
-    font-weight: bold;
+   background-color: #3b82f6;
+   color: white;
+   font-weight: bold;
 }
 
 .calendar-day.disabled {
-    color: #cbd5e0;
-    cursor: not-allowed;
-    background-color: #f8f8f8;
+   color: #cbd5e0;
+   cursor: not-allowed;
+   background-color: #f8f8f8;
 }
 
 .date-badge {
-    display: inline-flex;
-    align-items: center;
-    background-color: #e2e8f0;
-    padding: 6px 10px;
-    border-radius: 9999px;
-    margin-right: 6px;
-    margin-bottom: 6px;
-    font-size: 14px;
-    transition: all 0.2s ease;
+   display: inline-flex;
+   align-items: center;
+   background-color: #e2e8f0;
+   padding: 6px 10px;
+   border-radius: 9999px;
+   margin-right: 6px;
+   margin-bottom: 6px;
+   font-size: 14px;
+   transition: all 0.2s ease;
 }
 
 .date-badge:hover {
-    background-color: #cbd5e0;
+   background-color: #cbd5e0;
 }
 
 .date-badge button {
-    margin-left: 6px;
-    font-size: 16px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0 4px;
-    color: #4b5563;
+   margin-left: 6px;
+   font-size: 16px;
+   background: none;
+   border: none;
+   cursor: pointer;
+   padding: 0 4px;
+   color: #4b5563;
 }
 
 .date-badge button:hover {
-    color: #ef4444;
+   color: #ef4444;
 }
 
 .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 16px;
-    border-radius: 0.375rem;
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    z-index: 50;
-    max-width: 350px;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.3s ease;
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   padding: 16px;
+   border-radius: 0.375rem;
+   background-color: white;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+   z-index: 50;
+   max-width: 350px;
+   transform: translateY(100px);
+   opacity: 0;
+   transition: all 0.3s ease;
 }
 
 .toast.show {
-    transform: translateY(0);
-    opacity: 1;
+   transform: translateY(0);
+   opacity: 1;
 }
 
 .toast.success {
-    border-left: 4px solid #10b981;
+   border-left: 4px solid #10b981;
 }
 
 .toast.error {
-    border-left: 4px solid #ef4444;
+   border-left: 4px solid #ef4444;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 100;
+   justify-content: center;
+   align-items: center;
 }
 
 .modal.show {
-    display: flex;
+   display: flex;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   max-width: 500px;
+   width: 90%;
 }
 
 .btn-primary {
-    background-color: #3b82f6;
-    color: white;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    cursor: pointer;
+   background-color: #3b82f6;
+   color: white;
+   padding: 0.625rem 1.25rem;
+   border-radius: 0.375rem;
+   font-weight: 500;
+   transition: all 0.2s ease;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+   border: none;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-width: 120px;
+   cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #2563eb;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+   background-color: #2563eb;
+   transform: translateY(-1px);
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
-    background-color: white;
-    color: #4b5563;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    cursor: pointer;
+   background-color: white;
+   color: #4b5563;
+   padding: 0.625rem 1.25rem;
+   border-radius: 0.375rem;
+   font-weight: 500;
+   transition: all 0.2s ease;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+   border: 1px solid #e5e7eb;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-width: 120px;
+   cursor: pointer;
 }
 
 .btn-secondary:hover {
-    background-color: #f3f4f6;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+   background-color: #f3f4f6;
+   transform: translateY(-1px);
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* Indicador de carga */
 .loading-indicator {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.3);
+   z-index: 1000;
+   justify-content: center;
+   align-items: center;
 }
 
 .loading-indicator.show {
-    display: flex;
+   display: flex;
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3b82f6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+   width: 50px;
+   height: 50px;
+   border: 5px solid #f3f3f3;
+   border-top: 5px solid #3b82f6;
+   border-radius: 50%;
+   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
 }
 
 /* Estilos para los botones de navegación del calendario */
 .calendar-nav-btn {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    border: 1px solid #e2e8f0;
-    background-color: #f8fafc;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    cursor: pointer;
+   width: 30px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 16px;
+   border: 1px solid #e2e8f0;
+   background-color: #f8fafc;
+   border-radius: 4px;
+   transition: all 0.2s ease;
+   cursor: pointer;
 }
 
 .calendar-nav-btn:hover {
-    background-color: #e2e8f0;
-    transform: translateY(-1px);
+   background-color: #e2e8f0;
+   transform: translateY(-1px);
 }
 
 /* Estilos para el botón de debug */
 .debug-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #f59e0b;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    z-index: 1000;
-    display: none;
+   position: fixed;
+   bottom: 20px;
+   left: 20px;
+   background-color: #f59e0b;
+   color: white;
+   padding: 8px 16px;
+   border-radius: 4px;
+   font-size: 14px;
+   cursor: pointer;
+   z-index: 1000;
+   display: none;
 }
 </style>
 </head>
@@ -310,214 +310,214 @@ body {
 <div class="max-w-4xl mx-auto bg-white/90 p-6 rounded-lg shadow-lg my-8">
 <!-- Header -->
 <div class="flex justify-center mb-6">
-    <img src="https://i.ibb.co/CqHL9sV/1000212723-11zon.jpg" alt="Santa Sofia Logo" class="rounded-md max-w-full h-auto" style="max-height: 100px;">
+   <img src="https://i.ibb.co/CqHL9sV/1000212723-11zon.jpg" alt="Santa Sofia Logo" class="rounded-md max-w-full h-auto" style="max-height: 100px;">
 </div>
 
 <h1 class="text-2xl font-bold text-center mb-6">Sistema de Solicitudes</h1>
 
 <!-- Tabs -->
 <div class="mb-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-        <div class="tab active" data-tab="cambio-turno">Cambio de Turno</div>
-        <div class="tab" data-tab="permisos-licencias">Permisos y Licencias</div>
-        <div class="tab" data-tab="otros-permisos">Otros Permisos</div>
-        <div class="tab" data-tab="asuntos-propios">Asuntos Propios</div>
-    </div>
-    
-    <!-- Cambio de Turno Form -->
-    <div class="tab-content active" id="cambio-turno">
-        <form id="cambio-turno-form" class="space-y-6">
-            <div class="space-y-4">
-                <div>
-                    <label for="ct-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
-                    <input type="text" id="ct-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
-                </div>
-                
-                <div>
-                    <label for="ct-nombre-sustituto" class="block text-sm font-medium mb-1">Nombre del Trabajador Sustituto</label>
-                    <input type="text" id="ct-nombre-sustituto" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese el nombre del sustituto" required>
-                </div>
-                
-                <div>
-                    <label for="ct-fecha" class="block text-sm font-medium mb-1">Fecha del Cambio</label>
-                    <input type="date" id="ct-fecha" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="ct-horario-inicio" class="block text-sm font-medium mb-1">Horario de Inicio</label>
-                        <input type="time" id="ct-horario-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    </div>
-                    
-                    <div>
-                        <label for="ct-horario-fin" class="block text-sm font-medium mb-1">Horario de Fin</label>
-                        <input type="time" id="ct-horario-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-1">Firma del Trabajador</label>
-                    <div class="signature-container">
-                        <canvas id="ct-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
-                        <div class="flex justify-end mt-2">
-                            <button type="button" class="ct-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-1">Firma del Sustituto</label>
-                    <div class="signature-container">
-                        <canvas id="ct-signature-pad-sustituto" class="signature-pad w-full" width="400" height="150"></canvas>
-                        <div class="flex justify-end mt-2">
-                            <button type="button" class="ct-clear-signature-sustituto px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-center space-x-4">
-                <button type="submit" class="btn-primary">Generar Solicitud</button>
-                <button type="button" id="ct-reset" class="btn-secondary">Limpiar</button>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Permisos y Licencias Form -->
-    <div class="tab-content" id="permisos-licencias">
-        <form id="permisos-licencias-form" class="space-y-6">
-            <div class="space-y-4">
-                <div>
-                    <label for="pl-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
-                    <input type="text" id="pl-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="pl-fecha-inicio" class="block text-sm font-medium mb-1">Fecha de Inicio</label>
-                        <input type="date" id="pl-fecha-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    </div>
-                    
-                    <div>
-                        <label for="pl-fecha-fin" class="block text-sm font-medium mb-1">Fecha de Fin</label>
-                        <input type="date" id="pl-fecha-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="pl-motivos" class="block text-sm font-medium mb-1">Motivos</label>
-                    <textarea id="pl-motivos" class="w-full px-3 py-2 border border-gray-300 rounded-md" rows="4" placeholder="Describa los motivos de su solicitud" required></textarea>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-1">Firma</label>
-                    <div class="signature-container">
-                        <canvas id="pl-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
-                        <div class="flex justify-end mt-2">
-                            <button type="button" class="pl-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-center space-x-4">
-                <button type="submit" class="btn-primary">Generar Solicitud</button>
-                <button type="button" id="pl-reset" class="btn-secondary">Limpiar</button>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Otros Permisos Form -->
-    <div class="tab-content" id="otros-permisos">
-        <form id="otros-permisos-form" class="space-y-6">
-            <div class="space-y-4">
-                <div>
-                    <label for="op-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
-                    <input type="text" id="op-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
-                </div>
-                
-                <div>
-                    <label for="op-fecha" class="block text-sm font-medium mb-1">Fecha del Permiso</label>
-                    <input type="date" id="op-fecha" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="op-horario-inicio" class="block text-sm font-medium mb-1">Horario de Inicio (opcional)</label>
-                        <input type="time" id="op-horario-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md">
-                    </div>
-                    
-                    <div>
-                        <label for="op-horario-fin" class="block text-sm font-medium mb-1">Horario de Fin (opcional)</label>
-                        <input type="time" id="op-horario-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md">
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="op-motivos" class="block text-sm font-medium mb-1">Motivos</label>
-                    <textarea id="op-motivos" class="w-full px-3 py-2 border border-gray-300 rounded-md" rows="4" placeholder="Describa los motivos de su solicitud" required></textarea>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-1">Firma</label>
-                    <div class="signature-container">
-                        <canvas id="op-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
-                        <div class="flex justify-end mt-2">
-                            <button type="button" class="op-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-center space-x-4">
-                <button type="submit" class="btn-primary">Generar Solicitud</button>
-                <button type="button" id="op-reset" class="btn-secondary">Limpiar</button>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Asuntos Propios Form -->
-    <div class="tab-content" id="asuntos-propios">
-        <form id="asuntos-propios-form" class="space-y-6">
-            <div class="space-y-4">
-                <div>
-                    <label for="ap-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
-                    <input type="text" id="ap-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-1">Fechas de Asuntos Propios</label>
-                    <div class="border border-gray-300 rounded-md p-4">
-                        <div class="mb-4">
-                            <div class="flex justify-between items-center mb-4">
-                                <button type="button" id="prev-month" class="calendar-nav-btn">&lt;</button>
-                                <div id="current-month-year" class="font-medium text-lg"></div>
-                                <button type="button" id="next-month" class="calendar-nav-btn">&gt;</button>
-                            </div>
-                            <div class="calendar-header">
-                                <div class="text-center font-medium">Lu</div>
-                                <div class="text-center font-medium">Ma</div>
-                                <div class="text-center font-medium">Mi</div>
-                                <div class="text-center font-medium">Ju</div>
-                                <div class="text-center font-medium">Vi</div>
-                                <div class="text-center font-medium">Sa</div>
-                                <div class="text-center font-medium">Do</div>
-                            </div>
-                            <div id="calendar" class="calendar"></div>
-                        </div>
-                        <div class="mt-4 mb-2 font-medium">Fechas seleccionadas:</div>
-                        <div id="selected-dates" class="flex flex-wrap mt-2"></div>
-                        <input type="hidden" id="ap-fechas" required>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-center space-x-4">
-                <button type="submit" class="btn-primary">Generar Solicitud</button>
-                <button type="button" id="ap-reset" class="btn-secondary">Limpiar</button>
-            </div>
-        </form>
-    </div>
+   <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+       <div class="tab active" data-tab="cambio-turno">Cambio de Turno</div>
+       <div class="tab" data-tab="permisos-licencias">Permisos y Licencias</div>
+       <div class="tab" data-tab="otros-permisos">Otros Permisos</div>
+       <div class="tab" data-tab="asuntos-propios">Asuntos Propios</div>
+   </div>
+   
+   <!-- Cambio de Turno Form -->
+   <div class="tab-content active" id="cambio-turno">
+       <form id="cambio-turno-form" class="space-y-6">
+           <div class="space-y-4">
+               <div>
+                   <label for="ct-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
+                   <input type="text" id="ct-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
+               </div>
+               
+               <div>
+                   <label for="ct-nombre-sustituto" class="block text-sm font-medium mb-1">Nombre del Trabajador Sustituto</label>
+                   <input type="text" id="ct-nombre-sustituto" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese el nombre del sustituto" required>
+               </div>
+               
+               <div>
+                   <label for="ct-fecha" class="block text-sm font-medium mb-1">Fecha del Cambio</label>
+                   <input type="date" id="ct-fecha" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+               </div>
+               
+               <div class="grid grid-cols-2 gap-4">
+                   <div>
+                       <label for="ct-horario-inicio" class="block text-sm font-medium mb-1">Horario de Inicio</label>
+                       <input type="time" id="ct-horario-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                   </div>
+                   
+                   <div>
+                       <label for="ct-horario-fin" class="block text-sm font-medium mb-1">Horario de Fin</label>
+                       <input type="time" id="ct-horario-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                   </div>
+               </div>
+               
+               <div>
+                   <label class="block text-sm font-medium mb-1">Firma del Trabajador</label>
+                   <div class="signature-container">
+                       <canvas id="ct-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
+                       <div class="flex justify-end mt-2">
+                           <button type="button" class="ct-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
+                       </div>
+                   </div>
+               </div>
+               
+               <div>
+                   <label class="block text-sm font-medium mb-1">Firma del Sustituto</label>
+                   <div class="signature-container">
+                       <canvas id="ct-signature-pad-sustituto" class="signature-pad w-full" width="400" height="150"></canvas>
+                       <div class="flex justify-end mt-2">
+                           <button type="button" class="ct-clear-signature-sustituto px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="flex justify-center space-x-4">
+               <button type="submit" class="btn-primary">Generar Solicitud</button>
+               <button type="button" id="ct-reset" class="btn-secondary">Limpiar</button>
+           </div>
+       </form>
+   </div>
+   
+   <!-- Permisos y Licencias Form -->
+   <div class="tab-content" id="permisos-licencias">
+       <form id="permisos-licencias-form" class="space-y-6">
+           <div class="space-y-4">
+               <div>
+                   <label for="pl-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
+                   <input type="text" id="pl-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
+               </div>
+               
+               <div class="grid grid-cols-2 gap-4">
+                   <div>
+                       <label for="pl-fecha-inicio" class="block text-sm font-medium mb-1">Fecha de Inicio</label>
+                       <input type="date" id="pl-fecha-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                   </div>
+                   
+                   <div>
+                       <label for="pl-fecha-fin" class="block text-sm font-medium mb-1">Fecha de Fin</label>
+                       <input type="date" id="pl-fecha-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                   </div>
+               </div>
+               
+               <div>
+                   <label for="pl-motivos" class="block text-sm font-medium mb-1">Motivos</label>
+                   <textarea id="pl-motivos" class="w-full px-3 py-2 border border-gray-300 rounded-md" rows="4" placeholder="Describa los motivos de su solicitud" required></textarea>
+               </div>
+               
+               <div>
+                   <label class="block text-sm font-medium mb-1">Firma</label>
+                   <div class="signature-container">
+                       <canvas id="pl-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
+                       <div class="flex justify-end mt-2">
+                           <button type="button" class="pl-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="flex justify-center space-x-4">
+               <button type="submit" class="btn-primary">Generar Solicitud</button>
+               <button type="button" id="pl-reset" class="btn-secondary">Limpiar</button>
+           </div>
+       </form>
+   </div>
+   
+   <!-- Otros Permisos Form -->
+   <div class="tab-content" id="otros-permisos">
+       <form id="otros-permisos-form" class="space-y-6">
+           <div class="space-y-4">
+               <div>
+                   <label for="op-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
+                   <input type="text" id="op-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
+               </div>
+               
+               <div>
+                   <label for="op-fecha" class="block text-sm font-medium mb-1">Fecha del Permiso</label>
+                   <input type="date" id="op-fecha" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+               </div>
+               
+               <div class="grid grid-cols-2 gap-4">
+                   <div>
+                       <label for="op-horario-inicio" class="block text-sm font-medium mb-1">Horario de Inicio (opcional)</label>
+                       <input type="time" id="op-horario-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                   </div>
+                   
+                   <div>
+                       <label for="op-horario-fin" class="block text-sm font-medium mb-1">Horario de Fin (opcional)</label>
+                       <input type="time" id="op-horario-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                   </div>
+               </div>
+               
+               <div>
+                   <label for="op-motivos" class="block text-sm font-medium mb-1">Motivos</label>
+                   <textarea id="op-motivos" class="w-full px-3 py-2 border border-gray-300 rounded-md" rows="4" placeholder="Describa los motivos de su solicitud" required></textarea>
+               </div>
+               
+               <div>
+                   <label class="block text-sm font-medium mb-1">Firma</label>
+                   <div class="signature-container">
+                       <canvas id="op-signature-pad" class="signature-pad w-full" width="400" height="150"></canvas>
+                       <div class="flex justify-end mt-2">
+                           <button type="button" class="op-clear-signature px-3 py-1 text-sm border border-gray-300 rounded-md btn-secondary">Limpiar firma</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="flex justify-center space-x-4">
+               <button type="submit" class="btn-primary">Generar Solicitud</button>
+               <button type="button" id="op-reset" class="btn-secondary">Limpiar</button>
+           </div>
+       </form>
+   </div>
+   
+   <!-- Asuntos Propios Form -->
+   <div class="tab-content" id="asuntos-propios">
+       <form id="asuntos-propios-form" class="space-y-6">
+           <div class="space-y-4">
+               <div>
+                   <label for="ap-nombre-trabajador" class="block text-sm font-medium mb-1">Nombre del Trabajador</label>
+                   <input type="text" id="ap-nombre-trabajador" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ingrese su nombre completo" required>
+               </div>
+               
+               <div>
+                   <label class="block text-sm font-medium mb-1">Fechas de Asuntos Propios</label>
+                   <div class="border border-gray-300 rounded-md p-4">
+                       <div class="mb-4">
+                           <div class="flex justify-between items-center mb-4">
+                               <button type="button" id="prev-month" class="calendar-nav-btn">&lt;</button>
+                               <div id="current-month-year" class="font-medium text-lg"></div>
+                               <button type="button" id="next-month" class="calendar-nav-btn">&gt;</button>
+                           </div>
+                           <div class="calendar-header">
+                               <div class="text-center font-medium">Lu</div>
+                               <div class="text-center font-medium">Ma</div>
+                               <div class="text-center font-medium">Mi</div>
+                               <div class="text-center font-medium">Ju</div>
+                               <div class="text-center font-medium">Vi</div>
+                               <div class="text-center font-medium">Sa</div>
+                               <div class="text-center font-medium">Do</div>
+                           </div>
+                           <div id="calendar" class="calendar"></div>
+                       </div>
+                       <div class="mt-4 mb-2 font-medium">Fechas seleccionadas:</div>
+                       <div id="selected-dates" class="flex flex-wrap mt-2"></div>
+                       <input type="hidden" id="ap-fechas" required>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="flex justify-center space-x-4">
+               <button type="submit" class="btn-primary">Generar Solicitud</button>
+               <button type="button" id="ap-reset" class="btn-secondary">Limpiar</button>
+           </div>
+       </form>
+   </div>
 </div>
 </div>
 
@@ -530,24 +530,24 @@ body {
 <!-- Modal para PDF -->
 <div id="pdf-modal" class="modal">
 <div class="modal-content">
-    <h2 class="text-xl font-bold mb-4">Solicitud generada</h2>
-    <p class="mb-4">Su solicitud ha sido generada correctamente. Puede descargar el PDF y luego enviar el correo electrónico.</p>
-    <div class="flex flex-col space-y-3">
-        <button id="download-pdf" class="btn-primary mx-auto">Descargar PDF</button>
-        <button id="send-email" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition btn-primary mx-auto">Enviar correo electrónico</button>
-        <button id="close-modal" class="btn-secondary mx-auto">Cerrar</button>
-    </div>
+   <h2 class="text-xl font-bold mb-4">Solicitud generada</h2>
+   <p class="mb-4">Su solicitud ha sido generada correctamente. Puede descargar el PDF y luego enviar el correo electrónico.</p>
+   <div class="flex flex-col space-y-3">
+       <button id="download-pdf" class="btn-primary mx-auto">Descargar PDF</button>
+       <button id="send-email" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition btn-primary mx-auto">Enviar correo electrónico</button>
+       <button id="close-modal" class="btn-secondary mx-auto">Cerrar</button>
+   </div>
 </div>
 </div>
 
 <!-- Indicador de carga -->
 <div id="loading-indicator" class="loading-indicator">
-    <div class="spinner"></div>
+   <div class="spinner"></div>
 </div>
 
 <!-- Imagen de plantilla oculta para cargar en el PDF -->
 <div style="display: none;">
-    <img id="template-image" crossorigin="anonymous" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1742879709799-8oAeIbvrqgIlO6ui1ug5ItETtRu2Fa.png" alt="Plantilla PDF">
+   <img id="template-image" crossorigin="anonymous" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1742879709799-8oAeIbvrqgIlO6ui1ug5ItETtRu2Fa.png" alt="Plantilla PDF">
 </div>
 
 <!-- Botón de debug -->
@@ -559,1082 +559,1023 @@ body {
 <script>
 // Función para mostrar mensajes en la consola de debug
 function debugLog(message) {
-    console.log(message);
-    const debugConsole = document.getElementById('debug-console');
-    if (debugConsole) {
-        const logEntry = document.createElement('div');
-        logEntry.textContent = `> ${message}`;
-        debugConsole.appendChild(logEntry);
-        debugConsole.scrollTop = debugConsole.scrollHeight;
-    }
+   console.log(message);
+   const debugConsole = document.getElementById('debug-console');
+   if (debugConsole) {
+       const logEntry = document.createElement('div');
+       logEntry.textContent = `> ${message}`;
+       debugConsole.appendChild(logEntry);
+       debugConsole.scrollTop = debugConsole.scrollHeight;
+   }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    debugLog('Inicializando aplicación...');
-    
-    // Verificar que jsPDF está disponible
-    if (typeof window.jspdf === 'undefined') {
-        debugLog('Error: jsPDF no está disponible. Intentando cargar manualmente...');
-        
-        // Cargar jsPDF manualmente
-        const script = document.createElement('script');
-        script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-        script.async = true;
-        
-        script.onload = function() {
-            debugLog('jsPDF cargado manualmente con éxito.');
-            initializeApp();
-        };
-        
-        script.onerror = function() {
-            debugLog('Error al cargar jsPDF manualmente.');
-            alert('Error: No se pudo cargar la biblioteca jsPDF. Por favor, recargue la página o intente con otro navegador.');
-        };
-        
-        document.head.appendChild(script);
-    } else {
-        debugLog('jsPDF ya está disponible. Continuando con la inicialización...');
-        initializeApp();
-    }
-    
-    function initializeApp() {
-        let signaturePads = {};
-        let selectedDates = [];
-        let currentDate = new Date();
-        let currentMonth = currentDate.getMonth();
-        let currentYear = currentDate.getFullYear();
-        const emailDestino = "rrhh.santasofia@hotmail.es";
-        let generatedPDF = null;
-        let emailData = null;
-        let pdfFileName = "";
-        
-        // Función para mostrar notificaciones toast
-        function showToast(title, message, type = 'success') {
-            debugLog(`Toast: ${title} - ${message} (${type})`);
-            const toast = document.getElementById('toast');
-            const toastTitle = document.getElementById('toast-title');
-            const toastMessage = document.getElementById('toast-message');
-            
-            if (!toast || !toastTitle || !toastMessage) {
-                debugLog('No se encontraron elementos del toast');
-                return;
-            }
-            
-            toastTitle.textContent = title;
-            toastMessage.textContent = message;
-            
-            toast.className = 'toast';
-            toast.classList.add(type);
-            
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 5000);
-        }
-        
-        // Función para mostrar/ocultar indicador de carga
-        function showLoading(show = true) {
-            debugLog(`Indicador de carga: ${show ? 'mostrando' : 'ocultando'}`);
-            const loadingIndicator = document.getElementById('loading-indicator');
-            if (loadingIndicator) {
-                if (show) {
-                    loadingIndicator.classList.add('show');
-                } else {
-                    loadingIndicator.classList.remove('show');
-                }
-            }
-        }
-        
-        // Inicializar pestañas
-        function initTabs() {
-            debugLog('Inicializando pestañas...');
-            const tabs = document.querySelectorAll('.tab');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remover clase active de todas las pestañas
-                    tabs.forEach(t => t.classList.remove('active'));
-                    
-                    // Añadir clase active a la pestaña clickeada
-                    this.classList.add('active');
-                    
-                    // Ocultar todos los contenidos de pestañas
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    // Mostrar el contenido de la pestaña seleccionada
-                    const tabId = this.getAttribute('data-tab');
-                    const tabContent = document.getElementById(tabId);
-                    
-                    if (tabContent) {
-                        tabContent.classList.add('active');
-                    }
-                });
-            });
-            debugLog('Pestañas inicializadas correctamente');
-        }
-        
-        // Inicializar pads de firma
-        function initSignaturePads() {
-            debugLog('Inicializando pads de firma...');
-            const signatureTypes = [
-                { id: 'ct-signature-pad', clearBtn: '.ct-clear-signature', type: 'ct' },
-                { id: 'ct-signature-pad-sustituto', clearBtn: '.ct-clear-signature-sustituto', type: 'ct-sustituto' },
-                { id: 'pl-signature-pad', clearBtn: '.pl-clear-signature', type: 'pl' },
-                { id: 'op-signature-pad', clearBtn: '.op-clear-signature', type: 'op' }
-            ];
-            
-            signatureTypes.forEach(item => {
-                const canvas = document.getElementById(item.id);
-                if (!canvas) {
-                    debugLog(`Canvas no encontrado: ${item.id}`);
-                    return;
-                }
-                
-                const ctx = canvas.getContext('2d');
-                if (!ctx) {
-                    debugLog(`No se pudo obtener contexto 2D para: ${item.id}`);
-                    return;
-                }
-                
-                const signaturePad = {
-                    canvas: canvas,
-                    ctx: ctx,
-                    isDrawing: false,
-                    hasSigned: false,
-                    lastX: 0,
-                    lastY: 0
-                };
-                
-                // Configurar el canvas
-                ctx.lineWidth = 2;
-                ctx.lineCap = 'round';
-                ctx.strokeStyle = '#000';
-                
-                // Limpiar el canvas
-                ctx.fillStyle = '#f8f8f8';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Eventos del mouse
-                canvas.addEventListener('mousedown', function(e) {
-                    e.preventDefault();
-                    const rect = canvas.getBoundingClientRect();
-                    signaturePad.isDrawing = true;
-                    signaturePad.hasSigned = true;
-                    signaturePad.lastX = e.clientX - rect.left;
-                    signaturePad.lastY = e.clientY - rect.top;
-                    ctx.beginPath();
-                    ctx.moveTo(signaturePad.lastX, signaturePad.lastY);
-                });
-                
-                canvas.addEventListener('mousemove', function(e) {
-                    e.preventDefault();
-                    if (!signaturePad.isDrawing) return;
-                    
-                    const rect = canvas.getBoundingClientRect();
-                    const currentX = e.clientX - rect.left;
-                    const currentY = e.clientY - rect.top;
-                    
-                    ctx.lineTo(currentX, currentY);
-                    ctx.stroke();
-                    
-                    signaturePad.lastX = currentX;
-                    signaturePad.lastY = currentY;
-                });
-                
-                canvas.addEventListener('mouseup', function(e) {
-                    e.preventDefault();
-                    signaturePad.isDrawing = false;
-                    ctx.closePath();
-                    
-                    // Guardar la firma
-                    if (signaturePad.hasSigned) {
-                        try {
-                            localStorage.setItem(`firma_${item.type}`, canvas.toDataURL('image/png'));
-                        } catch (error) {
-                            debugLog(`Error al guardar firma: ${error.message}`);
-                        }
-                    }
-                });
-                
-                canvas.addEventListener('mouseout', function(e) {
-                    e.preventDefault();
-                    if (signaturePad.isDrawing) {
-                        signaturePad.isDrawing = false;
-                        ctx.closePath();
-                    }
-                });
-                
-                // Eventos táctiles
-                canvas.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    const touch = e.touches[0];
-                    const rect = canvas.getBoundingClientRect();
-                    
-                    signaturePad.isDrawing = true;
-                    signaturePad.hasSigned = true;
-                    signaturePad.lastX = touch.clientX - rect.left;
-                    signaturePad.lastY = touch.clientY - rect.top;
-                    ctx.beginPath();
-                    ctx.moveTo(signaturePad.lastX, signaturePad.lastY);
-                });
-                
-                canvas.addEventListener('touchmove', function(e) {
-                    e.preventDefault();
-                    if (!signaturePad.isDrawing) return;
-                    
-                    const touch = e.touches[0];
-                    const rect = canvas.getBoundingClientRect();
-                    const currentX = touch.clientX - rect.left;
-                    const currentY = touch.clientY - rect.top;
-                    
-                    ctx.lineTo(currentX, currentY);
-                    ctx.stroke();
-                    
-                    signaturePad.lastX = currentX;
-                    signaturePad.lastY = currentY;
-                });
-                
-                canvas.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    signaturePad.isDrawing = false;
-                    ctx.closePath();
-                    
-                    // Guardar la firma
-                    if (signaturePad.hasSigned) {
-                        try {
-                            localStorage.setItem(`firma_${item.type}`, canvas.toDataURL('image/png'));
-                        } catch (error) {
-                            debugLog(`Error al guardar firma: ${error.message}`);
-                        }
-                    }
-                });
-                
-                // Botón para limpiar firma
-                const clearButton = document.querySelector(item.clearBtn);
-                if (clearButton) {
-                    clearButton.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        ctx.fillStyle = '#f8f8f8';
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                        signaturePad.hasSigned = false;
-                        
-                        try {
-                            localStorage.removeItem(`firma_${item.type}`);
-                        } catch (error) {
-                            debugLog(`Error al eliminar firma guardada: ${error.message}`);
-                        }
-                    });
-                } else {
-                    debugLog(`Botón de limpiar no encontrado: ${item.clearBtn}`);
-                }
-                
-                // Guardar el pad de firma
-                signaturePads[item.type] = signaturePad;
-                debugLog(`Pad de firma inicializado: ${item.id}`);
-                
-                // Cargar firma guardada si existe
-                try {
-                    const savedSignature = localStorage.getItem(`firma_${item.type}`);
-                    if (savedSignature) {
-                        const img = new Image();
-                        img.onload = function() {
-                            ctx.drawImage(img, 0, 0);
-                            signaturePad.hasSigned = true;
-                        };
-                        img.src = savedSignature;
-                    }
-                } catch (error) {
-                    debugLog(`Error al cargar firma guardada: ${error.message}`);
-                }
-            });
-            debugLog('Pads de firma inicializados correctamente');
-        }
-        
-        // Inicializar calendario
-        function initCalendar() {
-            debugLog('Inicializando calendario...');
-            const calendarEl = document.getElementById('calendar');
-            const prevMonthBtn = document.getElementById('prev-month');
-            const nextMonthBtn = document.getElementById('next-month');
-            
-            if (prevMonthBtn) {
-                prevMonthBtn.addEventListener('click', function() {
-                    currentMonth--;
-                    if (currentMonth < 0) {
-                        currentMonth = 11;
-                        currentYear--;
-                    }
-                    renderCalendar();
-                });
-            }
-            
-            if (nextMonthBtn) {
-                nextMonthBtn.addEventListener('click', function() {
-                    currentMonth++;
-                    if (currentMonth > 11) {
-                        currentMonth = 0;
-                        currentYear++;
-                    }
-                    renderCalendar();
-                });
-            }
-            
-            renderCalendar();
-            debugLog('Calendario inicializado correctamente');
-        }
-        
-        // Renderizar calendario
-        function renderCalendar() {
-            const calendarEl = document.getElementById('calendar');
-            if (!calendarEl) return;
-            
-            calendarEl.innerHTML = '';
-            
-            const currentMonthYearEl = document.getElementById('current-month-year');
-            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-            
-            if (currentMonthYearEl) {
-                currentMonthYearEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            }
-            
-            const firstDay = new Date(currentYear, currentMonth, 1);
-            const lastDay = new Date(currentYear, currentMonth + 1, 0);
-            
-            let firstDayOfWeek = firstDay.getDay();
-            firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
-            
-            for (let i = 0; i < firstDayOfWeek; i++) {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = 'calendar-day disabled';
-                calendarEl.appendChild(emptyCell);
-            }
-            
-            for (let day = 1; day <= lastDay.getDate(); day++) {
-                const dayCell = document.createElement('div');
-                dayCell.className = 'calendar-day';
-                dayCell.textContent = day;
-                
-                const currentDateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const isSelected = selectedDates.some(date => date.toISOString().split('T')[0] === currentDateStr);
-                
-                if (isSelected) {
-                    dayCell.classList.add('selected');
-                }
-                
-                dayCell.addEventListener('click', function() {
-                    const clickedDate = new Date(currentYear, currentMonth, day);
-                    
-                    const dateIndex = selectedDates.findIndex(date => 
-                        date.getDate() === clickedDate.getDate() &&
-                        date.getMonth() === clickedDate.getMonth() &&
-                        date.getFullYear() === clickedDate.getFullYear()
-                    );
-                    
-                    if (dateIndex !== -1) {
-                        selectedDates.splice(dateIndex, 1);
-                        dayCell.classList.remove('selected');
-                    } else {
-                        selectedDates.push(clickedDate);
-                        dayCell.classList.add('selected');
-                    }
-                    
-                    updateSelectedDates();
-                });
-                
-                calendarEl.appendChild(dayCell);
-            }
-        }
-        
-        // Actualizar fechas seleccionadas
-        function updateSelectedDates() {
-            const selectedDatesEl = document.getElementById('selected-dates');
-            const apFechasInput = document.getElementById('ap-fechas');
-            
-            if (!selectedDatesEl || !apFechasInput) return;
-            
-            selectedDatesEl.innerHTML = '';
-            selectedDates.sort((a, b) => a - b);
-            
-            selectedDates.forEach((date, index) => {
-                const dateStr = date.toLocaleDateString('es-ES');
-                
-                const badge = document.createElement('div');
-                badge.className = 'date-badge';
-                badge.innerHTML = `
-                    ${dateStr}
-                    <button type="button" data-index="${index}">×</button>
-                `;
-                
-                badge.querySelector('button').addEventListener('click', function() {
-                    selectedDates.splice(index, 1);
-                    updateSelectedDates();
-                    renderCalendar();
-                });
-                
-                selectedDatesEl.appendChild(badge);
-            });
-            
-            apFechasInput.value = selectedDates.map(date => date.toISOString()).join(',');
-        }
-        
-        // Inicializar modal
-        function initModal() {
-            debugLog('Inicializando modal...');
-            const modal = document.getElementById('pdf-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-            const downloadPdfBtn = document.getElementById('download-pdf');
-            const sendEmailBtn = document.getElementById('send-email');
-            
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', function() {
-                    modal.classList.remove('show');
-                });
-            }
-            
-            if (downloadPdfBtn) {
-                downloadPdfBtn.addEventListener('click', function() {
-                    if (generatedPDF) {
-                        try {
-                            debugLog('Descargando PDF...');
-                            generatedPDF.save(pdfFileName);
-                            debugLog('PDF descargado correctamente');
-                        } catch (error) {
-                            debugLog(`Error al descargar PDF: ${error.message}`);
-                            showToast('Error', 'No se pudo descargar el PDF. Por favor, inténtelo de nuevo.', 'error');
-                        }
-                    } else {
-                        debugLog('Error: No hay PDF para descargar');
-                        showToast('Error', 'No hay PDF para descargar', 'error');
-                    }
-                });
-            }
-            
-            if (sendEmailBtn) {
-                sendEmailBtn.addEventListener('click', function() {
-                    if (emailData) {
-                        try {
-                            const { subject, body } = emailData;
-                            const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                            window.location.href = mailtoLink;
-                        } catch (error) {
-                            debugLog(`Error al abrir cliente de correo: ${error.message}`);
-                            showToast('Error', 'No se pudo abrir el cliente de correo. Por favor, inténtelo de nuevo.', 'error');
-                        }
-                    } else {
-                        showToast('Error', 'No hay datos para enviar por correo', 'error');
-                    }
-                    modal.classList.remove('show');
-                });
-            }
-            debugLog('Modal inicializado correctamente');
-        }
-        
-        // Cargar nombre guardado
-        function loadSavedName() {
-            try {
-                const savedName = localStorage.getItem('nombreTrabajador');
-                if (savedName) {
-                    debugLog(`Nombre guardado encontrado: ${savedName}`);
-                    const ctNombreTrabajador = document.getElementById('ct-nombre-trabajador');
-                    const plNombreTrabajador = document.getElementById('pl-nombre-trabajador');
-                    const opNombreTrabajador = document.getElementById('op-nombre-trabajador');
-                    const apNombreTrabajador = document.getElementById('ap-nombre-trabajador');
-                    
-                    if (ctNombreTrabajador) ctNombreTrabajador.value = savedName;
-                    if (plNombreTrabajador) plNombreTrabajador.value = savedName;
-                    if (opNombreTrabajador) opNombreTrabajador.value = savedName;
-                    if (apNombreTrabajador) apNombreTrabajador.value = savedName;
-                }
-            } catch (error) {
-                debugLog(`Error al cargar nombre guardado: ${error.message}`);
-            }
-        }
-        
-        // Formatear fecha
-        function formatDate(dateString) {
-            try {
-                const date = new Date(dateString);
-                const day = date.getDate().toString().padStart(2, '0');
-                const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                const year = date.getFullYear();
-                return `${day}/${month}/${year}`;
-            } catch (error) {
-                debugLog(`Error al formatear fecha: ${error.message}`);
-                return dateString;
-            }
-        }
-        
-        // Obtener fecha actual formateada
-        function getCurrentFormattedDate() {
-            return formatDate(new Date().toISOString().split('T')[0]);
-        }
-        
-        // Función para generar el PDF
-        function generateFormularioPDF(data) {
-            debugLog('Iniciando generación de PDF con datos:', data);
-            return new Promise((resolve, reject) => {
-                try {
-                    // Crear un nuevo documento PDF
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF();
-                    
-                    // Obtener la imagen de plantilla
-                    const templateImage = document.getElementById('template-image');
-                    
-                    // Función para añadir la imagen de plantilla y luego el texto
-                    const addContentWithTemplate = () => {
-                        // Añadir la imagen de plantilla como fondo
-                        doc.addImage(templateImage, 'PNG', 0, 0, 210, 297);
+   debugLog('Inicializando aplicación...');
+   
+   // Verificar que jsPDF está disponible
+   if (typeof window.jspdf === 'undefined') {
+       debugLog('Error: jsPDF no está disponible. Intentando cargar manualmente...');
+       
+       // Cargar jsPDF manualmente
+       const script = document.createElement('script');
+       script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+       script.async = true;
+       
+       script.onload = function() {
+           debugLog('jsPDF cargado manualmente con éxito.');
+           initializeApp();
+       };
+       
+       script.onerror = function() {
+           debugLog('Error al cargar jsPDF manualmente.');
+           alert('Error: No se pudo cargar la biblioteca jsPDF. Por favor, recargue la página o intente con otro navegador.');
+       };
+       
+       document.head.appendChild(script);
+   } else {
+       debugLog('jsPDF ya está disponible. Continuando con la inicialización...');
+       initializeApp();
+   }
+   
+   function initializeApp() {
+       let signaturePads = {};
+       let selectedDates = [];
+       let currentDate = new Date();
+       let currentMonth = currentDate.getMonth();
+       let currentYear = currentDate.getFullYear();
+       const emailDestino = "rrhh.santasofia@hotmail.es";
+       let generatedPDF = null;
+       let emailData = null;
+       let pdfFileName = "";
+       
+       // Función para mostrar notificaciones toast
+       function showToast(title, message, type = 'success') {
+           debugLog(`Toast: ${title} - ${message} (${type})`);
+           const toast = document.getElementById('toast');
+           const toastTitle = document.getElementById('toast-title');
+           const toastMessage = document.getElementById('toast-message');
+           
+           if (!toast || !toastTitle || !toastMessage) {
+               debugLog('No se encontraron elementos del toast');
+               return;
+           }
+           
+           toastTitle.textContent = title;
+           toastMessage.textContent = message;
+           
+           toast.className = 'toast';
+           toast.classList.add(type);
+           
+           setTimeout(() => {
+               toast.classList.add('show');
+           }, 100);
+           
+           setTimeout(() => {
+               toast.classList.remove('show');
+           }, 5000);
+       }
+       
+       // Función para mostrar/ocultar indicador de carga
+       function showLoading(show = true) {
+           debugLog(`Indicador de carga: ${show ? 'mostrando' : 'ocultando'}`);
+           const loadingIndicator = document.getElementById('loading-indicator');
+           if (loadingIndicator) {
+               if (show) {
+                   loadingIndicator.classList.add('show');
+               } else {
+                   loadingIndicator.classList.remove('show');
+               }
+           }
+       }
+       
+       // Inicializar pestañas
+       function initTabs() {
+           debugLog('Inicializando pestañas...');
+           const tabs = document.querySelectorAll('.tab');
+           
+           tabs.forEach(tab => {
+               tab.addEventListener('click', function() {
+                   // Remover clase active de todas las pestañas
+                   tabs.forEach(t => t.classList.remove('active'));
+                   
+                   // Añadir clase active a la pestaña clickeada
+                   this.classList.add('active');
+                   
+                   // Ocultar todos los contenidos de pestañas
+                   document.querySelectorAll('.tab-content').forEach(content => {
+                       content.classList.remove('active');
+                   });
+                   
+                   // Mostrar el contenido de la pestaña seleccionada
+                   const tabId = this.getAttribute('data-tab');
+                   const tabContent = document.getElementById(tabId);
+                   
+                   if (tabContent) {
+                       tabContent.classList.add('active');
+                   }
+               });
+           });
+           debugLog('Pestañas inicializadas correctamente');
+       }
+       
+       // Inicializar pads de firma con calidad reducida
+       function initSignaturePads() {
+           debugLog('Inicializando pads de firma...');
+           const signatureTypes = [
+               { id: 'ct-signature-pad', clearBtn: '.ct-clear-signature', type: 'ct' },
+               { id: 'ct-signature-pad-sustituto', clearBtn: '.ct-clear-signature-sustituto', type: 'ct-sustituto' },
+               { id: 'pl-signature-pad', clearBtn: '.pl-clear-signature', type: 'pl' },
+               { id: 'op-signature-pad', clearBtn: '.op-clear-signature', type: 'op' }
+           ];
+           
+           signatureTypes.forEach(item => {
+               const canvas = document.getElementById(item.id);
+               if (!canvas) {
+                   debugLog(`Canvas no encontrado: ${item.id}`);
+                   return;
+               }
+               
+               const ctx = canvas.getContext('2d');
+               if (!ctx) {
+                   debugLog(`No se pudo obtener contexto 2D para: ${item.id}`);
+                   return;
+               }
+               
+               const signaturePad = {
+                   canvas: canvas,
+                   ctx: ctx,
+                   isDrawing: false,
+                   hasSigned: false,
+                   lastX: 0,
+                   lastY: 0
+               };
+               
+               // Configurar el canvas con calidad reducida para optimizar
+               ctx.lineWidth = 1.5; // Reducido de 2 para menor peso
+               ctx.lineCap = 'round';
+               ctx.strokeStyle = '#000';
+               
+               // Limpiar el canvas
+               ctx.fillStyle = '#f8f8f8';
+               ctx.fillRect(0, 0, canvas.width, canvas.height);
+               
+               // Eventos del mouse
+               canvas.addEventListener('mousedown', function(e) {
+                   e.preventDefault();
+                   const rect = canvas.getBoundingClientRect();
+                   signaturePad.isDrawing = true;
+                   signaturePad.hasSigned = true;
+                   signaturePad.lastX = e.clientX - rect.left;
+                   signaturePad.lastY = e.clientY - rect.top;
+                   ctx.beginPath();
+                   ctx.moveTo(signaturePad.lastX, signaturePad.lastY);
+               });
+               
+               canvas.addEventListener('mousemove', function(e) {
+                   e.preventDefault();
+                   if (!signaturePad.isDrawing) return;
+                   
+                   const rect = canvas.getBoundingClientRect();
+                   const currentX = e.clientX - rect.left;
+                   const currentY = e.clientY - rect.top;
+                   
+                   ctx.lineTo(currentX, currentY);
+                   ctx.stroke();
+                   
+                   signaturePad.lastX = currentX;
+                   signaturePad.lastY = currentY;
+               });
+               
+               canvas.addEventListener('mouseup', function(e) {
+                   e.preventDefault();
+                   signaturePad.isDrawing = false;
+                   ctx.closePath();
+                   
+                   // Guardar la firma
+                   if (signaturePad.hasSigned) {
+                       try {
+                           // Guardar con calidad reducida para menor peso
+                           localStorage.setItem(`firma_${item.type}`, canvas.toDataURL('image/jpeg', 0.5));
+                       } catch (error) {
+                           debugLog(`Error al guardar firma: ${error.message}`);
+                       }
+                   }
+               });
+               
+               canvas.addEventListener('mouseout', function(e) {
+                   e.preventDefault();
+                   if (signaturePad.isDrawing) {
+                       signaturePad.isDrawing = false;
+                       ctx.closePath();
+                   }
+               });
+               
+               // Eventos táctiles
+               canvas.addEventListener('touchstart', function(e) {
+                   e.preventDefault();
+                   const touch = e.touches[0];
+                   const rect = canvas.getBoundingClientRect();
+                   
+                   signaturePad.isDrawing = true;
+                   signaturePad.hasSigned = true;
+                   signaturePad.lastX = touch.clientX - rect.left;
+                   signaturePad.lastY = touch.clientY - rect.top;
+                   ctx.beginPath();
+                   ctx.moveTo(signaturePad.lastX, signaturePad.lastY);
+               });
+               
+               canvas.addEventListener('touchmove', function(e) {
+                   e.preventDefault();
+                   if (!signaturePad.isDrawing) return;
+                   
+                   const touch = e.touches[0];
+                   const rect = canvas.getBoundingClientRect();
+                   const currentX = touch.clientX - rect.left;
+                   const currentY = touch.clientY - rect.top;
+                   
+                   ctx.lineTo(currentX, currentY);
+                   ctx.stroke();
+                   
+                   signaturePad.lastX = currentX;
+                   signaturePad.lastY = currentY;
+               });
+               
+               canvas.addEventListener('touchend', function(e) {
+                   e.preventDefault();
+                   signaturePad.isDrawing = false;
+                   ctx.closePath();
+                   
+                   // Guardar la firma
+                   if (signaturePad.hasSigned) {
+                       try {
+                           // Guardar con calidad reducida para menor peso
+                           localStorage.setItem(`firma_${item.type}`, canvas.toDataURL('image/jpeg', 0.5));
+                       } catch (error) {
+                           debugLog(`Error al guardar firma: ${error.message}`);
+                       }
+                   }
+               });
+               
+               // Botón para limpiar firma
+               const clearButton = document.querySelector(item.clearBtn);
+               if (clearButton) {
+                   clearButton.addEventListener('click', function(e) {
+                       e.preventDefault();
+                       ctx.fillStyle = '#f8f8f8';
+                       ctx.fillRect(0, 0, canvas.width, canvas.height);
+                       signaturePad.hasSigned = false;
+                       
+                       try {
+                           localStorage.removeItem(`firma_${item.type}`);
+                       } catch (error) {
+                           debugLog(`Error al eliminar firma guardada: ${error.message}`);
+                       }
+                   });
+               } else {
+                   debugLog(`Botón de limpiar no encontrado: ${item.clearBtn}`);
+               }
+               
+               // Guardar el pad de firma
+               signaturePads[item.type] = signaturePad;
+               debugLog(`Pad de firma inicializado: ${item.id}`);
+               
+               // Cargar firma guardada si existe
+               try {
+                   const savedSignature = localStorage.getItem(`firma_${item.type}`);
+                   if (savedSignature) {
+                       const img = new Image();
+                       img.onload = function() {
+                           ctx.drawImage(img, 0, 0);
+                           signaturePad.hasSigned = true;
+                       };
+                       img.src = savedSignature;
+                   }
+               } catch (error) {
+                   debugLog(`Error al cargar firma guardada: ${error.message}`);
+               }
+           });
+           debugLog('Pads de firma inicializados correctamente');
+       }
+       
+       // Inicializar calendario
+       function initCalendar() {
+           debugLog('Inicializando calendario...');
+           const calendarEl = document.getElementById('calendar');
+           const prevMonthBtn = document.getElementById('prev-month');
+           const nextMonthBtn = document.getElementById('next-month');
+           
+           if (prevMonthBtn) {
+               prevMonthBtn.addEventListener('click', function() {
+                   currentMonth--;
+                   if (currentMonth < 0) {
+                       currentMonth = 11;
+                       currentYear--;
+                   }
+                   renderCalendar();
+               });
+           }
+           
+           if (nextMonthBtn) {
+               nextMonthBtn.addEventListener('click', function() {
+                   currentMonth++;
+                   if (currentMonth > 11) {
+                       currentMonth = 0;
+                       currentYear++;
+                   }
+                   renderCalendar();
+               });
+           }
+           
+           renderCalendar();
+           debugLog('Calendario inicializado correctamente');
+       }
+       
+       // Renderizar calendario
+       function renderCalendar() {
+           const calendarEl = document.getElementById('calendar');
+           if (!calendarEl) return;
+           
+           calendarEl.innerHTML = '';
+           
+           const currentMonthYearEl = document.getElementById('current-month-year');
+           const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+           
+           if (currentMonthYearEl) {
+               currentMonthYearEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+           }
+           
+           const firstDay = new Date(currentYear, currentMonth, 1);
+           const lastDay = new Date(currentYear, currentMonth + 1, 0);
+           
+           let firstDayOfWeek = firstDay.getDay();
+           firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+           
+           for (let i = 0; i < firstDayOfWeek; i++) {
+               const emptyCell = document.createElement('div');
+               emptyCell.className = 'calendar-day disabled';
+               calendarEl.appendChild(emptyCell);
+           }
+           
+           for (let day = 1; day <= lastDay.getDate(); day++) {
+               const dayCell = document.createElement('div');
+               dayCell.className = 'calendar-day';
+               dayCell.textContent = day;
+               
+               const currentDateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+               const isSelected = selectedDates.some(date => date.toISOString().split('T')[0] === currentDateStr);
+               
+               if (isSelected) {
+                   dayCell.classList.add('selected');
+               }
+               
+               dayCell.addEventListener('click', function() {
+                   const clickedDate = new Date(currentYear, currentMonth, day);
+                   
+                   const dateIndex = selectedDates.findIndex(date => 
+                       date.getDate() === clickedDate.getDate() &&
+                       date.getMonth() === clickedDate.getMonth() &&
+                       date.getFullYear() === clickedDate.getFullYear()
+                   );
+                   
+                   if (dateIndex !== -1) {
+                       selectedDates.splice(dateIndex, 1);
+                       dayCell.classList.remove('selected');
+                   } else {
+                       selectedDates.push(clickedDate);
+                       dayCell.classList.add('selected');
+                   }
+                   
+                   updateSelectedDates();
+               });
+               
+               calendarEl.appendChild(dayCell);
+           }
+       }
+       
+       // Actualizar fechas seleccionadas
+       function updateSelectedDates() {
+           const selectedDatesEl = document.getElementById('selected-dates');
+           const apFechasInput = document.getElementById('ap-fechas');
+           
+           if (!selectedDatesEl || !apFechasInput) return;
+           
+           selectedDatesEl.innerHTML = '';
+           selectedDates.sort((a, b) => a - b);
+           
+           selectedDates.forEach((date, index) => {
+               const dateStr = date.toLocaleDateString('es-ES');
+               
+               const badge = document.createElement('div');
+               badge.className = 'date-badge';
+               badge.innerHTML = `
+                   ${dateStr}
+                   <button type="button" data-index="${index}">×</button>
+               `;
+               
+               badge.querySelector('button').addEventListener('click', function() {
+                   selectedDates.splice(index, 1);
+                   updateSelectedDates();
+                   renderCalendar();
+               });
+               
+               selectedDatesEl.appendChild(badge);
+           });
+           
+           apFechasInput.value = selectedDates.map(date => date.toISOString()).join(',');
+       }
+       
+       // Inicializar modal
+       function initModal() {
+           debugLog('Inicializando modal...');
+           const modal = document.getElementById('pdf-modal');
+           const closeModalBtn = document.getElementById('close-modal');
+           const downloadPdfBtn = document.getElementById('download-pdf');
+           const sendEmailBtn = document.getElementById('send-email');
+           
+           if (closeModalBtn) {
+               closeModalBtn.addEventListener('click', function() {
+                   modal.classList.remove('show');
+               });
+           }
+           
+           if (downloadPdfBtn) {
+               downloadPdfBtn.addEventListener('click', function() {
+                   if (generatedPDF) {
+                       try {
+                           debugLog('Descargando PDF...');
+                           generatedPDF.save(pdfFileName);
+                           debugLog('PDF descargado correctamente');
+                       } catch (error) {
+                           debugLog(`Error al descargar PDF: ${error.message}`);
+                           showToast('Error', 'No se pudo descargar el PDF. Por favor, inténtelo de nuevo.', 'error');
+                       }
+                   } else {
+                       debugLog('Error: No hay PDF para descargar');
+                       showToast('Error', 'No hay PDF para descargar', 'error');
+                   }
+               });
+           }
+           
+           if (sendEmailBtn) {
+               sendEmailBtn.addEventListener('click', function() {
+                   if (emailData) {
+                       try {
+                           const { subject, body } = emailData;
+                           const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                           window.location.href = mailtoLink;
+                       } catch (error) {
+                           debugLog(`Error al abrir cliente de correo: ${error.message}`);
+                           showToast('Error', 'No se pudo abrir el cliente de correo. Por favor, inténtelo de nuevo.', 'error');
+                       }
+                   } else {
+                       showToast('Error', 'No hay datos para enviar por correo', 'error');
+                   }
+                   modal.classList.remove('show');
+               });
+           }
+           debugLog('Modal inicializado correctamente');
+       }
+       
+       // Cargar nombre guardado
+       function loadSavedName() {
+           try {
+               const savedName = localStorage.getItem('nombreTrabajador');
+               if (savedName) {
+                   debugLog(`Nombre guardado encontrado: ${savedName}`);
+                   const ctNombreTrabajador = document.getElementById('ct-nombre-trabajador');
+                   const plNombreTrabajador = document.getElementById('pl-nombre-trabajador');
+                   const opNombreTrabajador = document.getElementById('op-nombre-trabajador');
+                   const apNombreTrabajador = document.getElementById('ap-nombre-trabajador');
+                   
+                   if (ctNombreTrabajador) ctNombreTrabajador.value = savedName;
+                   if (plNombreTrabajador) plNombreTrabajador.value = savedName;
+                   if (opNombreTrabajador) opNombreTrabajador.value = savedName;
+                   if (apNombreTrabajador) apNombreTrabajador.value = savedName;
+               }
+           } catch (error) {
+               debugLog(`Error al cargar nombre guardado: ${error.message}`);
+           }
+       }
+       
+       // Formatear fecha
+       function formatDate(dateString) {
+           try {
+               const date = new Date(dateString);
+               const day = date.getDate().toString().padStart(2, '0');
+               const month = (date.getMonth() + 1).toString().padStart(2, '0');
+               const year = date.getFullYear();
+               return `${day}/${month}/${year}`;
+           } catch (error) {
+               debugLog(`Error al formatear fecha: ${error.message}`);
+               return dateString;
+           }
+       }
+       
+       // Obtener fecha actual formateada
+       function getCurrentFormattedDate() {
+           return formatDate(new Date().toISOString().split('T')[0]);
+       }
+       
+       // Función para generar el PDF optimizado
+       function generateFormularioPDF(data) {
+           debugLog('Iniciando generación de PDF con datos:', data);
+           return new Promise((resolve, reject) => {
+               try {
+                   // Crear un nuevo documento PDF
+                   const { jsPDF } = window.jspdf;
+                   const doc = new jsPDF({
+                       compress: true, // Activar compresión
+                       precision: 2,   // Reducir precisión para menor tamaño
+                       unit: 'mm'
+                   });
+                   
+                   // Obtener la imagen de plantilla
+                   const templateImage = document.getElementById('template-image');
+                   
+                   // Función para añadir la imagen de plantilla y luego el texto
+                   const addContentWithTemplate = () => {
+                       // Añadir la imagen de plantilla como fondo con calidad reducida
+                       doc.addImage(templateImage, 'JPEG', 0, 0, 210, 297, undefined, 'FAST', 0, 0);
 
-                        // Configurar el estilo del texto
-                        doc.setFontSize(11);
-                        doc.setTextColor(0, 0, 0);
+                       // Configurar el estilo del texto
+                       doc.setFontSize(11);
+                       doc.setTextColor(0, 0, 0);
 
-                        if (data.tipo === 'cambio-turno') {
-                            debugLog('Generando PDF de cambio de turno');
-                            
-                            // Marcar la casilla de cambio de turno (X)
-                            doc.setFillColor(0, 0, 0);
-                            doc.rect(14, 53, 3, 3, 'F'); 
-                            
-                            // Datos del trabajador - Subir texto 7 líneas
-                            doc.text(data.nombreTrabajador, 42, 52); // Ajustado: subido 7 líneas
-                            
-                            // Datos del trabajador sustituto - Mover 4 espacios a la derecha
-                            doc.text(data.nombreSustituto, 46, 65); // Ajustado: 4 espacios a la derecha
-                            
-                            // Fecha del cambio - Mover 4 espacios a la derecha
-                            const fechaParts = data.fecha.split('/');
-                            doc.text(fechaParts[0], 31, 71); // día - Ajustado: 4 espacios a la derecha
-                            doc.text(fechaParts[1], 38, 71); // mes - Ajustado: 4 espacios a la derecha
-                            doc.text(fechaParts[2], 46, 71); // año - Ajustado: 4 espacios a la derecha
-                            
-                            // Horario - Mover 4 espacios a la derecha
-                            doc.text(data.horarioInicio, 118, 71); // Ajustado: 4 espacios a la derecha
-                            doc.text(data.horarioFin, 149, 71); // Ajustado: 4 espacios a la derecha
-                            
-                            // Fecha actual
-                            doc.text(`Fecha: ${data.fechaActual}`, 150, 40); // Añadido: fecha actual
-                            
-                            // Firmas - Mover 2 espacios a la derecha
-                            if (data.firmaTrabajador) {
-                                doc.addImage(data.firmaTrabajador, "PNG", 30, 85, 30, 15); // Ajustado: 2 espacios a la derecha
-                                doc.text(data.nombreTrabajador, 30, 105); // Quitado "FDO:" pero manteniendo el nombre
-                            }
-                            
-                            if (data.firmaSustituto) {
-                                doc.addImage(data.firmaSustituto, "PNG", 117, 85, 30, 15); // Ajustado: 2 espacios a la derecha
-                                doc.text(data.nombreSustituto, 117, 105); // Quitado "FDO:" pero manteniendo el nombre
-                            }
-                        } 
-                        else if (data.tipo === 'permisos-licencias') {
-                            debugLog('Generando PDF de permisos y licencias');
-                            
-                            // Marcar la casilla de permiso o licencia (X)
-                            doc.setFillColor(0, 0, 0);
-                            doc.rect(14, 104, 3, 3, 'F');
-                            
-                            // Datos del trabajador - Subir texto 3 líneas
-                            doc.text(data.nombreTrabajador, 42, 112); // Ajustado: subido 3 líneas
-                            
-                            // Fecha actual
-                            doc.text(`Fecha: ${data.fechaActual}`, 150, 95);
-                            
-                            // Fechas de rango (inicio y fin) - Mover 3 espacios a la derecha
-                            const fechaInicioParts = data.fechaInicio.split('/');
-                            const fechaFinParts = data.fechaFin.split('/');
-                            
-                            // Fecha de inicio - Mover 3 espacios a la derecha
-                            doc.text(fechaInicioParts[0], 30, 137); // día inicio
-                            doc.text(fechaInicioParts[1], 37, 137); // mes inicio
-                            doc.text(fechaInicioParts[2], 45, 137); // año inicio
-                            
-                            // Fecha de fin - Mover 3 espacios a la derecha
-                            doc.text(fechaFinParts[0], 113, 137); // día fin
-                            doc.text(fechaFinParts[1], 120, 137); // mes fin
-                            doc.text(fechaFinParts[2], 128, 137); // año fin
-                            
-                            // Motivos - Bajar 3 líneas y mover 3 espacios a la izquierda
-                            const motivos = data.motivos;
-                            const maxWidth = 120;
-                            const lines = doc.splitTextToSize(motivos, maxWidth);
-                            doc.text(lines, 39, 152); // Ajustado: bajado 3 líneas, 3 espacios a la izquierda
-                            
-                            // Firma - Mover 3 espacios a la derecha
-                            if (data.firma) {
-                                doc.addImage(data.firma, "PNG", 118, 182, 30, 15); // Ajustado: 3 espacios a la derecha
-                                doc.text(data.nombreTrabajador, 118, 202); // Quitado "FDO:" pero manteniendo el nombre
-                            }
-                        } 
-                        else if (data.tipo === 'otros-permisos') {
-                            debugLog('Generando PDF de otros permisos');
-                            
-                            // Marcar la casilla de otros permisos (X)
-                            doc.setFillColor(0, 0, 0);
-                            doc.rect(14, 184, 3, 3, 'F');
-                            
-                            // Datos del trabajador
-                            doc.text(data.nombreTrabajador, 42, 195);
-                            
-                            // Fecha actual
-                            doc.text(`Fecha: ${data.fechaActual}`, 150, 175);
-                            
-                            // Fecha del permiso - Mover 3 espacios a la derecha
-                            doc.text(`Fecha del permiso: ${data.fecha}`, 45, 201); // Ajustado: 3 espacios a la derecha
-                            
-                            // Horario (si aplica) - Mover 3 espacios a la derecha
-                            let yPos = 207;
-                            if (data.horarioInicio && data.horarioFin) {
-                                doc.text(`Horario: ${data.horarioInicio} a ${data.horarioFin}`, 45, yPos); // Ajustado: 3 espacios a la derecha
-                                yPos += 6;
-                            }
-                            
-                            // Motivo - Mover 3 espacios a la derecha
-                            const lines = doc.splitTextToSize(`Motivo: ${data.motivos}`, 120);
-                            doc.text(lines, 45, yPos); // Ajustado: 3 espacios a la derecha
-                            
-                            // Firma - Mover 2 espacios a la derecha
-                            if (data.firma) {
-                                doc.addImage(data.firma, "PNG", 117, 217, 30, 15); // Ajustado: 2 espacios a la derecha
-                                doc.text(data.nombreTrabajador, 117, 237); // Quitado "FDO:" pero manteniendo el nombre
-                            }
-                        }
+                       // En la función generateFormularioPDF, dentro de addContentWithTemplate, reemplazar el código para "cambio-turno" con:
 
-                        doc.setProperties({
-                            title: data.pdfFileName || "Solicitud.pdf",
-                            subject: 'Solicitud',
-                            author: data.nombreTrabajador,
-                            keywords: 'solicitud, santa sofia',
-                            creator: 'Sistema de Solicitudes - Santa Sofia'
-                        });
+if (data.tipo === 'cambio-turno') {
+  debugLog('Generando PDF de cambio de turno');
+  
+  // Marcar la casilla de cambio de turno (X) - Subido 1 renglón
+  doc.setFillColor(0, 0, 0);
+  doc.rect(14, 29, 3, 3, 'F'); 
+  
+  // Datos del trabajador - Subir 1 renglón
+  doc.text(data.nombreTrabajador, 42, 41); 
+  
+  // Datos del trabajador sustituto - Subido 1 renglón y movido 1 espacio a la derecha
+  doc.text(data.nombreSustituto, 54, 47); 
+  
+  // Fecha del cambio, hora inicio y fin - Subido 2 renglones
+  const fechaParts = data.fecha.split('/');
+  doc.text(fechaParts[0], 35, 51); // día
+  doc.text(fechaParts[1], 42, 51); // mes
+  doc.text(fechaParts[2], 50, 51); // año
+  
+  // Horario - Subido 2 renglones
+  doc.text(data.horarioInicio, 122, 51); 
+  doc.text(data.horarioFin, 153, 51); 
+  
+  // Fecha actual
+  doc.text(`Fecha: ${data.fechaActual}`, 150, 40);
+  
+  // Firmas - Subido 5 renglones y movido 3 espacios a la derecha
+  if (data.firmaTrabajador) {
+      doc.addImage(data.firmaTrabajador, "JPEG", 37, 53, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreTrabajador, 37, 73);
+  }
+  
+  if (data.firmaSustituto) {
+      doc.addImage(data.firmaSustituto, "JPEG", 124, 53, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreSustituto, 124, 73);
+  }
+} 
+else if (data.tipo === 'permisos-licencias') {
+  debugLog('Generando PDF de permisos y licencias');
+  
+  // Marcar la casilla de permiso o licencia (X) - Subido 1 espacio
+  doc.setFillColor(0, 0, 0);
+  doc.rect(14, 94, 3, 3, 'F');
+  
+  // Datos del trabajador - Subido 1 renglón
+  doc.text(data.nombreTrabajador, 42, 101);
+  
+  // Fecha actual
+  doc.text(`Fecha: ${data.fechaActual}`, 150, 95);
+  
+  // Fechas de rango (inicio y fin) - Subido 1 renglón y movido 1 espacio a la derecha
+  const fechaInicioParts = data.fechaInicio.split('/');
+  const fechaFinParts = data.fechaFin.split('/');
+  
+  // Fecha de inicio - Subido 1 renglón y movido 1 espacio a la derecha
+  doc.text(fechaInicioParts[0], 34, 127);
+  doc.text(fechaInicioParts[1], 41, 127);
+  doc.text(fechaInicioParts[2], 49, 127);
+  
+  // Fecha de fin - Subido 1 renglón y movido 1 espacio a la derecha
+  doc.text(fechaFinParts[0], 117, 127);
+  doc.text(fechaFinParts[1], 124, 127);
+  doc.text(fechaFinParts[2], 132, 127);
+  
+  // Motivos - Movido 6 espacios a la izquierda y subido 3 renglones
+  const motivos = data.motivos;
+  const maxWidth = 120;
+  const lines = doc.splitTextToSize(motivos, maxWidth);
+  doc.text(lines, 30, 146);
+  
+  // Firma - Subido 4 renglones y movido 2 espacios a la derecha
+  if (data.firma) {
+      doc.addImage(data.firma, "JPEG", 125, 154, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreTrabajador, 125, 174);
+  }
+} 
+else if (data.tipo === 'otros-permisos') {
+  debugLog('Generando PDF de otros permisos');
+  
+  // Marcar la casilla de otros permisos (X)
+  doc.setFillColor(0, 0, 0);
+  doc.rect(14, 184, 3, 3, 'F');
+  
+  // Datos del trabajador
+  doc.text(data.nombreTrabajador, 42, 195);
+  
+  // Fecha actual
+  doc.text(`Fecha: ${data.fechaActual}`, 150, 175);
+  
+  // Fecha del permiso - Movido 6 espacios a la izquierda
+  doc.text(`Fecha del permiso: ${data.fecha}`, 33, 201);
+  
+  // Horario (si aplica) - Movido 6 espacios a la izquierda
+  let yPos = 207;
+  if (data.horarioInicio && data.horarioFin) {
+      doc.text(`Horario: ${data.horarioInicio} a ${data.horarioFin}`, 33, yPos);
+      yPos += 6;
+  }
+  
+  // Motivo - Movido 6 espacios a la izquierda
+  const lines = doc.splitTextToSize(`Motivo: ${data.motivos}`, 120);
+  doc.text(lines, 33, yPos);
+  
+  // Firma - Mover 4 espacios a la derecha
+  if (data.firma) {
+      doc.addImage(data.firma, "JPEG", 127, 217, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreTrabajador, 127, 237);
+  }
+}
 
-                        // Optimizar el PDF para reducir el tamaño
-                        try {
-                            doc.setCompression(true);
-                        } catch (error) {
-                            debugLog(`Error al comprimir PDF: ${error.message}`);
-                        }
-                        
-                        debugLog('PDF generado correctamente');
-                        
-                        resolve(doc);
-                    };
-                    
-                    // Verificar si la imagen está cargada
-                    if (templateImage.complete) {
-                        addContentWithTemplate();
-                    } else {
-                        // Si la imagen no está cargada, esperar a que se cargue
-                        templateImage.onload = addContentWithTemplate;
-                        
-                        // Si hay un error al cargar la imagen, generar un PDF sin la plantilla
-                        templateImage.onerror = function() {
-                            debugLog('Error al cargar la imagen de plantilla. Generando PDF sin plantilla.', templateImage.src);
-                            
-                            // Método alternativo sin usar la imagen de plantilla
-                            doc.setFillColor(255, 255, 255);
-                            doc.rect(0, 0, 210, 297, 'F');
-                            
-                            // Configurar el estilo del texto
-                            doc.setFontSize(14);
-                            doc.setTextColor(0, 0, 0);
-                            
-                            // Título
-                            doc.setFontSize(18);
-                            doc.text('SOLICITUD - SANTA SOFIA', 105, 20, { align: 'center' });
-                            
-                            if (data.tipo === 'cambio-turno') {
-                                doc.setFontSize(16);
-                                doc.text('SOLICITUD DE CAMBIO DE TURNO', 105, 30, { align: 'center' });
-                                doc.setFontSize(12);
-                                
-                                // Dibujar un rectángulo para marcar la opción
-                                doc.setFillColor(0, 0, 0);
-                                doc.rect(20, 40, 5, 5, 'F');
-                                doc.text('Cambio de Turno', 30, 44);
-                                
-                                // Datos del trabajador
-                                doc.setFontSize(12);
-                                doc.text('Nombre del Trabajador:', 20, 60);
-                                doc.setFontSize(12);
-                                doc.text(data.nombreTrabajador, 120, 60);
-                                
-                                doc.setFontSize(12);
-                                doc.text('Nombre del Sustituto:', 20, 70);
-                                doc.setFontSize(12);
-                                doc.text(data.nombreSustituto, 120, 70);
-                                
-                                // Fecha del cambio
-                                doc.setFontSize(12);
-                                doc.text('Fecha del Cambio:', 20, 80);
-                                doc.setFontSize(12);
-                                doc.text(data.fecha, 120, 80);
-                                
-                                // Horario
-                                doc.setFontSize(12);
-                                doc.text('Horario:', 20, 90);
-                                doc.setFontSize(12);
-                                doc.text(`${data.horarioInicio} a ${data.horarioFin}`, 120, 90);
-                                
-                                // Fecha actual
-                                doc.setFontSize(12);
-                                doc.text(`Fecha actual: ${data.fechaActual}`, 20, 100);
-                                
-                                // Firmas
-                                doc.setFontSize(12);
-                                doc.text('Firma del Trabajador:', 20, 120);
-                                if (data.firmaTrabajador) {
-                                    doc.addImage(data.firmaTrabajador, "PNG", 20, 130, 60, 30);
-                                    doc.text(data.nombreTrabajador, 20, 170); // Quitado "FDO:"
-                                }
-                                
-                                doc.setFontSize(12);
-                                doc.text('Firma del Sustituto:', 120, 120);
-                                if (data.firmaSustituto) {
-                                    doc.addImage(data.firmaSustituto, "PNG", 120, 130, 60, 30);
-                                    doc.text(data.nombreSustituto, 120, 170); // Quitado "FDO:"
-                                }
-                            } 
-                            else if (data.tipo === 'permisos-licencias') {
-                                doc.setFontSize(16);
-                                doc.text('SOLICITUD DE PERMISO O LICENCIA', 105, 30, { align: 'center' });
-                                doc.setFontSize(12);
-                                
-                                // Dibujar un rectángulo para marcar la opción
-                                doc.setFillColor(0, 0, 0);
-                                doc.rect(20, 40, 5, 5, 'F');
-                                doc.text('Permiso o Licencia', 30, 44);
-                                
-                                // Datos del trabajador
-                                doc.setFontSize(12);
-                                doc.text('Nombre del Trabajador:', 20, 60);
-                                doc.setFontSize(12);
-                                doc.text(data.nombreTrabajador, 120, 60);
-                                
-                                // Fecha actual
-                                doc.setFontSize(12);
-                                doc.text(`Fecha actual: ${data.fechaActual}`, 20, 70);
-                                
-                                // Fechas
-                                doc.setFontSize(12);
-                                doc.text('Fecha de Inicio:', 20, 80);
-                                doc.setFontSize(12);
-                                doc.text(data.fechaInicio, 120, 80);
-                                
-                                doc.setFontSize(12);
-                                doc.text('Fecha de Fin:', 20, 90);
-                                doc.setFontSize(12);
-                                doc.text(data.fechaFin, 120, 90);
-                                
-                                // Motivos
-                                doc.setFontSize(12);
-                                doc.text('Motivos:', 20, 100);
-                                const motivos = data.motivos;
-                                const maxWidth = 170;
-                                const lines = doc.splitTextToSize(motivos, maxWidth);
-                                doc.setFontSize(12);
-                                doc.text(lines, 20, 110);
-                                
-                                // Firma
-                                doc.setFontSize(12);
-                                doc.text('Firma:', 20, 150);
-                                if (data.firma) {
-                                    doc.addImage(data.firma, "PNG", 20, 160, 60, 30);
-                                    doc.text(data.nombreTrabajador, 20, 200); // Quitado "FDO:"
-                                }
-                            } 
-                            else if (data.tipo === 'otros-permisos') {
-                                doc.setFontSize(16);
-                                doc.text('SOLICITUD DE OTRO PERMISO', 105, 30, { align: 'center' });
-                                doc.setFontSize(12);
-                                
-                                // Dibujar un rectángulo para marcar la opción
-                                doc.setFillColor(0, 0, 0);
-                                doc.rect(20, 40, 5, 5, 'F');
-                                doc.text('Otro Permiso', 30, 44);
-                                
-                                // Datos del trabajador
-                                doc.setFontSize(12);
-                                doc.text('Nombre del Trabajador:', 20, 60);
-                                doc.setFontSize(12);
-                                doc.text(data.nombreTrabajador, 120, 60);
-                                
-                                // Fecha actual
-                                doc.setFontSize(12);
-                                doc.text(`Fecha actual: ${data.fechaActual}`, 20, 70);
-                                
-                                // Fecha del permiso
-                                doc.setFontSize(12);
-                                doc.text('Fecha del Permiso:', 20, 80);
-                                doc.setFontSize(12);
-                                doc.text(data.fecha, 120, 80);
-                                
-                                // Horario (opcional)
-                                if (data.horarioInicio && data.horarioFin) {
-                                    doc.setFontSize(12);
-                                    doc.text('Horario:', 20, 90);
-                                    doc.setFontSize(12);
-                                    doc.text(`${data.horarioInicio} a ${data.horarioFin}`, 120, 90);
-                                }
-                                
-                                // Motivos
-                                doc.setFontSize(12);
-                                doc.text('Motivos:', 20, 100);
-                                const motivos = data.motivos;
-                                const maxWidth = 170;
-                                const lines = doc.splitTextToSize(motivos, maxWidth);
-                                doc.setFontSize(12);
-                                doc.text(lines, 20, 110);
-                                
-                                // Firma
-                                doc.setFontSize(12);
-                                doc.text('Firma:', 20, 150);
-                                if (data.firma) {
-                                    doc.addImage(data.firma, "PNG", 20, 160, 60, 30);
-                                    doc.text(data.nombreTrabajador, 20, 200); // Quitado "FDO:"
-                                }
-                            }
-                            
-                            // Añadir fecha actual y pie de página
-                            doc.setFontSize(10);
-                            doc.text(`Fecha de solicitud: ${data.fechaActual}`, 20, 280);
-                            doc.text('Santa Sofia - Sistema de Solicitudes', 105, 290, { align: 'center' });
-                            
-                            doc.setProperties({
-                                title: data.pdfFileName || "Solicitud.pdf",
-                                subject: 'Solicitud',
-                                author: data.nombreTrabajador,
-                                keywords: 'solicitud, santa sofia',
-                                creator: 'Sistema de Solicitudes - Santa Sofia'
-                            });
-                            
-                            // Optimizar el PDF para reducir el tamaño
-                            try {
-                                doc.setCompression(true);
-                            } catch (error) {
-                                debugLog(`Error al comprimir PDF: ${error.message}`);
-                            }
-                            
-                            resolve(doc);
-                        };
-                    }
-                } catch (error) {
-                    debugLog(`Error al generar PDF: ${error.message}`);
-                    reject(error);
-                }
-            });
-        }
-        
-        // Inicializar formularios
-        function initForms() {
-            debugLog('Inicializando formularios...');
-            
-            // Botones de reset
-            const ctReset = document.getElementById('ct-reset');
-            if (ctReset) {
-                ctReset.addEventListener('click', function() {
-                    document.getElementById('cambio-turno-form').reset();
-                    
-                    if (signaturePads['ct']) {
-                        signaturePads['ct'].ctx.fillStyle = '#f8f8f8';
-                        signaturePads['ct'].ctx.fillRect(0, 0, signaturePads['ct'].canvas.width, signaturePads['ct'].canvas.height);
-                        signaturePads['ct'].hasSigned = false;
-                    }
-                    
-                    if (signaturePads['ct-sustituto']) {
-                        signaturePads['ct-sustituto'].ctx.fillStyle = '#f8f8f8';
-                        signaturePads['ct-sustituto'].ctx.fillRect(0, 0, signaturePads['ct-sustituto'].canvas.width, signaturePads['ct-sustituto'].canvas.height);
-                        signaturePads['ct-sustituto'].hasSigned = false;
-                    }
-                    
-                    loadSavedName();
-                });
-            }
-            
-            const plReset = document.getElementById('pl-reset');
-            if (plReset) {
-                plReset.addEventListener('click', function() {
-                    document.getElementById('permisos-licencias-form').reset();
-                    
-                    if (signaturePads['pl']) {
-                        signaturePads['pl'].ctx.fillStyle = '#f8f8f8';
-                        signaturePads['pl'].ctx.fillRect(0, 0, signaturePads['pl'].canvas.width, signaturePads['pl'].canvas.height);
-                        signaturePads['pl'].hasSigned = false;
-                    }
-                    
-                    loadSavedName();
-                });
-            }
-            
-            const opReset = document.getElementById('op-reset');
-            if (opReset) {
-                opReset.addEventListener('click', function() {
-                    document.getElementById('otros-permisos-form').reset();
-                    
-                    if (signaturePads['op']) {
-                        signaturePads['op'].ctx.fillStyle = '#f8f8f8';
-                        signaturePads['op'].ctx.fillRect(0, 0, signaturePads['op'].canvas.width, signaturePads['op'].canvas.height);
-                        signaturePads['op'].hasSigned = false;
-                    }
-                    
-                    loadSavedName();
-                });
-            }
-            
-            const apReset = document.getElementById('ap-reset');
-            if (apReset) {
-                apReset.addEventListener('click', function() {
-                    document.getElementById('asuntos-propios-form').reset();
-                    
-                    selectedDates = [];
-                    updateSelectedDates();
-                    renderCalendar();
-                    
-                    loadSavedName();
-                });
-            }
-            
-            // Texto para el correo electrónico
-            const emailFooterText = "Cualquier comunicación referente a la aceptación o denegación de esta solicitud se realice a través de la misma vía por la que se está tramitando en un plazo adecuado.";
-            
-            // Formulario de Cambio de Turno
-            const cambioTurnoForm = document.getElementById('cambio-turno-form');
-            if (cambioTurnoForm) {
-                cambioTurnoForm.addEventListener('submit', function(e) {
-                    debugLog('Formulario de Cambio de Turno enviado');
-                    e.preventDefault();
-                    
-                    const nombreTrabajador = document.getElementById('ct-nombre-trabajador').value;
-                    const nombreSustituto = document.getElementById('ct-nombre-sustituto').value;
-                    const fecha = document.getElementById('ct-fecha').value;
-                    const horarioInicio = document.getElementById('ct-horario-inicio').value;
-                    const horarioFin = document.getElementById('ct-horario-fin').value;
-                    
-                    if (!nombreTrabajador || !nombreSustituto || !fecha || !horarioInicio || !horarioFin) {
-                        showToast('Error', 'Por favor, complete todos los campos del formulario.', 'error');
-                        return;
-                    }
-                    
-                    if (!signaturePads['ct'] || !signaturePads['ct'].hasSigned) {
-                        showToast('Error', 'Por favor, firme el documento (trabajador) antes de enviarlo.', 'error');
-                        return;
-                    }
-                    
-                    if (!signaturePads['ct-sustituto'] || !signaturePads['ct-sustituto'].hasSigned) {
-                        showToast('Error', 'Por favor, firme el documento (sustituto) antes de enviarlo.', 'error');
-                        return;
-                    }
-                    
-                    try {
-                        localStorage.setItem('nombreTrabajador', nombreTrabajador);
-                    } catch (error) {
-                        debugLog(`Error al guardar nombre: ${error.message}`);
-                    }
-                    
-                    const fechaFormateada = formatDate(fecha);
-                    const fechaActual = getCurrentFormattedDate();
-                    
-                    showLoading(true);
-                    showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
-                    
-                    generateFormularioPDF({
-                        tipo: 'cambio-turno',
-                        nombreTrabajador,
-                        nombreSustituto,
-                        fecha: fechaFormateada,
-                        fechaActual: fechaActual,
-                        horarioInicio,
-                        horarioFin,
-                        firmaTrabajador: signaturePads['ct'].canvas.toDataURL('image/png'),
-                        firmaSustituto: signaturePads['ct-sustituto'].canvas.toDataURL('image/png')
-                    }).then(pdfDoc => {
-                        showLoading(false);
-                        
-                        pdfFileName = `CCOO ${fechaFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
-                        generatedPDF = pdfDoc;
-                        
-                        const subject = `Solicitud de Cambio de Turno - ${fechaFormateada} - ${nombreTrabajador}`;
-                        const body = `Hola, soy ${nombreTrabajador} y solicito un cambio de turno para el día ${fechaFormateada} en horario de ${horarioInicio} a ${horarioFin}, siendo sustituido por ${nombreSustituto}.
+                       doc.setProperties({
+                           title: data.pdfFileName || "Solicitud.pdf",
+                           subject: 'Solicitud',
+                           author: data.nombreTrabajador,
+                           keywords: 'solicitud, santa sofia',
+                           creator: 'Sistema de Solicitudes - Santa Sofia'
+                       });
 
-Quedo a la espera de su confirmación y, en caso de necesitar cualquier aclaración adicional, estaré disponible para facilitar la información requerida.
-
-${emailFooterText}
-
-Gracias de antemano por su atención.
-
-Un saludo,
-${nombreTrabajador}`;
-                        
-                        emailData = { subject, body };
-                        
-                        const modal = document.getElementById('pdf-modal');
-                        if (modal) {
-                            modal.classList.add('show');
-                        }
-                    }).catch(error => {
-                        showLoading(false);
-                        debugLog(`Error al generar PDF: ${error.message}`);
-                        showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
-                    });
-                });
-            }
-            
-            // Formulario de Permisos y Licencias
-            const permisosLicenciasForm = document.getElementById('permisos-licencias-form');
-            if (permisosLicenciasForm) {
-                permisosLicenciasForm.addEventListener('submit', function(e) {
-                    debugLog('Formulario de Permisos y Licencias enviado');
-                    e.preventDefault();
-                    
-                    const nombreTrabajador = document.getElementById('pl-nombre-trabajador').value;
-                    const fechaInicio = document.getElementById('pl-fecha-inicio').value;
-                    const fechaFin = document.getElementById('pl-fecha-fin').value;
-                    const motivos = document.getElementById('pl-motivos').value;
-                    
-                    if (!nombreTrabajador || !fechaInicio || !fechaFin || !motivos) {
-                        showToast('Error', 'Por favor, complete todos los campos del formulario.', 'error');
-                        return;
-                    }
-                    
-                    if (!signaturePads['pl'] || !signaturePads['pl'].hasSigned) {
-                        showToast('Error', 'Por favor, firme el documento antes de enviarlo.', 'error');
-                        return;
-                    }
-                    
-                    try {
-                        localStorage.setItem('nombreTrabajador', nombreTrabajador);
-                    } catch (error) {
-                        debugLog(`Error al guardar nombre: ${error.message}`);
-                    }
-                    
-                    const fechaInicioFormateada = formatDate(fechaInicio);
-                    const fechaFinFormateada = formatDate(fechaFin);
-                    const fechaActual = getCurrentFormattedDate();
-                    
-                    showLoading(true);
-                    showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
-                    
-                    generateFormularioPDF({
-                        tipo: 'permisos-licencias',
-                        nombreTrabajador,
-                        fechaInicio: fechaInicioFormateada,
-                        fechaFin: fechaFinFormateada,
-                        fechaActual: fechaActual,
-                        motivos,
-                        firma: signaturePads['pl'].canvas.toDataURL('image/png')
-                    }).then(pdfDoc => {
-                        showLoading(false);
-                        
-                        pdfFileName = `CCOO ${fechaInicioFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
-                        generatedPDF = pdfDoc;
-                        
-                        const subject = `Solicitud de Permiso o Licencia - ${fechaInicioFormateada} - ${nombreTrabajador}`;
-                        const body = `Hola, soy ${nombreTrabajador} y solicito un permiso/licencia desde el día ${fechaInicioFormateada} hasta el día ${fechaFinFormateada} por los siguientes motivos: ${motivos}.
+                       // Optimizar el PDF para reducir el tamaño
+                       try {
+                           doc.setCompression(true);
+                       } catch (error) {
+                           debugLog(`Error al comprimir PDF: ${error.message}`);
+                       }
+                       
+                       debugLog('PDF generado correctamente');
+                       
+                       resolve(doc);
+                   };
+                   
+                   // Verificar si la imagen está cargada
+                   if (templateImage.complete) {
+                       addContentWithTemplate();
+                   } else {
+                       // Si la imagen no está cargada, esperar a que se cargue
+                       templateImage.onload = addContentWithTemplate;
+                       
+                       // Si hay un error al cargar la imagen, generar un PDF sin la plantilla
+                       templateImage.onerror = function() {
+                           debugLog('Error al cargar la imagen de plantilla. Generando PDF sin plantilla.', templateImage.src);
+                           
+                           // Método alternativo sin usar la imagen de plantilla
+                           doc.setFillColor(255, 255, 255);
+                           doc.rect(0, 0, 210, 297, 'F');
+                           
+                           // Configurar el estilo del texto
+                           doc.setFontSize(14);
+                           doc.setTextColor(0, 0, 0);
+                           
+                           // Título
+                           doc.setFontSize(18);
+                           doc.text('SOLICITUD - SANTA SOFIA', 105, 20, { align: 'center' });
+                           
+                           if (data.tipo === 'cambio-turno') {
+                               doc.setFontSize(16);
+                               doc.text('SOLICITUD DE CAMBIO DE TURNO', 105, 30, { align: 'center' });
+                               doc.setFontSize(12);
+                               
+                               // Dibujar un rectángulo para marcar la opción
+                               doc.setFillColor(0, 0, 0);
+                               doc.rect(20, 40, 5, 5, 'F');
+                               doc.text('Cambio de Turno', 30, 44);
+                               
+                               // Datos del trabajador
+                               doc.setFontSize(12);
+                               doc.text('Nombre del Trabajador:', 20, 60);
+                               doc.setFontSize(12);
+                               doc.text(data.nombreTrabajador, 120, 60);
+                               
+                               doc.setFontSize(12);
+                               doc.text('Nombre del Sustituto:', 20, 70);
+                               doc.setFontSize(12);
+                               doc.text(data.nombreSustituto, 120, 70);
+                               
+                               // Fecha del cambio
+                               doc.setFontSize(12);
+                               doc.text('Fecha del Cambio:', 20, 80);
+                               doc.setFontSize(12);
+                               doc.text(data.fecha, 120, 80);
+                               
+                               // Horario
+                               doc.setFontSize(12);
+                               doc.text('Horario:', 20, 90);
+                               doc.setFontSize(12);
+                               doc.text(`${data.horarioInicio} a ${data.horarioFin}`, 120, 90);
+                               
+                               // Fecha actual
+                               doc.setFontSize(12);
+                               doc.text(`Fecha actual: ${data.fechaActual}`, 20, 100);
+                               
+                               // Firmas
+                               doc.setFontSize(12);
+                               doc.text('Firma del Trabajador:', 20, 120);
+                               if (data.firmaTrabajador) {
+                                   // Usar calidad reducida para las firmas
+                                   doc.addImage(data.firmaTrabajador, "JPEG", 20, 130, 60, 30, undefined, 'FAST', 0);
+                                   doc.text(data.nombreTrabajador, 20, 170); // Quitado "FDO:"
+                               }
+                               
+                               doc.setFontSize(12);
+                               doc.text('Firma del Sustituto:', 120, 120);
+                               if (data.firmaSustituto) {
+                                   // Usar calidad reducida para las firmas
+                                   doc.addImage(data.firmaSustituto, "JPEG", 120, 130, 60, 30, undefined, 'FAST', 0);
+                                   doc.text(data.nombreSustituto, 120, 170); // Quitado "FDO:"
+                               }
+                           } 
+                           else if (data.tipo === 'permisos-licencias') {
+                               doc.setFontSize(16);
+                               doc.text('SOLICITUD DE PERMISO O LICENCIA', 105, 30, { align: 'center' });
+                               doc.setFontSize(12);
+                               
+                               // Dibujar un rectángulo para marcar la opción
+                               doc.setFillColor(0, 0, 0);
+                               doc.rect(20, 40, 5, 5, 'F');
+                               doc.text('Permiso o Licencia', 30, 44);
+                               
+                               // Datos del trabajador
+                               doc.setFontSize(12);
+                               doc.text('Nombre del Trabajador:', 20, 60);
+                               doc.setFontSize(12);
+                               doc.text(data.nombreTrabajador, 120, 60);
+                               
+                               // Fecha actual
+                               doc.setFontSize(12);
+                               doc.text(`Fecha actual: ${data.fechaActual}`, 20, 70);
+                               
+                               // Fechas
+                               doc.setFontSize(12);
+                               doc.text('Fecha de Inicio:', 20, 80);
+                               doc.setFontSize(12);
+                               doc.text(data.fechaInicio, 120, 80);
+                               
+                               doc.setFontSize(12);
+                               doc.text('Fecha de Fin:', 20, 90);
+                               doc.setFontSize(12);
+                               doc.text(data.fechaFin, 120, 90);
+                               
+                               // Motivos
+                               doc.setFontSize(12);
+                               doc.text('Motivos:', 20, 100);
+                               const motivos = data.motivos;
+                               const maxWidth = 170;
+                               const lines = doc.splitTextToSize(motivos, maxWidth);
+                               doc.setFontSize(12);
+                               doc.text(lines, 20, 110);
+                               
+                               // Firma
+                               doc.setFontSize(12);
+                               doc.text('Firma:', 20, 150);
+                               if (data.firma) {
+                                   // Usar calidad reducida para las firmas
+                                   doc.addImage(data.firma, "JPEG", 20, 160, 60, 30, undefined, 'FAST', 0);
+                                   doc.text(data.nombreTrabajador, 20, 200); // Quitado "FDO:"
+                               }
+                           } 
+                           else if (data.tipo === 'otros-permisos') {
+                               doc.setFontSize(16);
+                               doc.text('SOLICITUD DE OTRO PERMISO', 105, 30, { align: 'center' });
+                               doc.setFontSize(12);
+                               
+                               // Dibujar un rectángulo para marcar la opción
+                               doc.setFillColor(0, 0, 0);
+                               doc.rect(20, 40, 5, 5, 'F');
+                               doc.text('Otro Permiso', 30, 44);
+                               
+                               // Datos del trabajador
+                               doc.setFontSize(12);
+                               doc.text('Nombre del Trabajador:', 20, 60);
+                               doc.setFontSize(12);
+                               doc.text(data.nombreTrabajador, 120, 60);
+                               
+                               // Fecha actual
+                               doc.setFontSize(12);
+                               doc.text(`Fecha actual: ${data.fechaActual}`, 20, 70);
+                               
+                               // Fecha del permiso
+                               doc.setFontSize(12);
+                               doc.text('Fecha del Permiso:', 20, 80);
+                               doc.setFontSize(12);
+                               doc.text(data.fecha, 120, 80);
+                               
+                               // Horario (opcional)
+                               if (data.horarioInicio && data.horarioFin) {
+                                   doc.setFontSize(12);
+                                   doc.text('Horario:', 20, 90);
+                                   doc.setFontSize(12);
+                                   doc.text(`${data.horarioInicio} a ${data.horarioFin}`, 120, 90);
+                               }
+                               
+                               // Motivos
+                               doc.setFontSize(12);
+                               doc.text('Motivos:', 20, 100);
+                               const motivos = data.motivos;
+                               const maxWidth = 170;
+                               const lines = doc.splitTextToSize(motivos, maxWidth);
+                               doc.setFontSize(12);
+                               doc.text(lines, 20, 110);
+                               
+                               // Firma
+                               doc.setFontSize(12);
+                               doc.text('Firma:', 20, 150);
+                               if (data.firma) {
+                                   // Usar calidad reducida para las firmas
+                                   doc.addImage(data.firma, "JPEG", 20, 160, 60, 30, undefined, 'FAST', 0);
+                                   doc.text(data.nombreTrabajador, 20, 200); // Quitado "FDO:"
+                               }
+                           }
+                           
+                           // Añadir fecha actual y pie de página
+                           doc.setFontSize(10);
+                           doc.text(`Fecha de solicitud: ${data.fechaActual}`, 20, 280);
+                           doc.text('Santa Sofia - Sistema de Solicitudes', 105, 290, { align: 'center' });
+                           
+                           doc.setProperties({
+                               title: data.pdfFileName || "Solicitud.pdf",
+                               subject: 'Solicitud',
+                               author: data.nombreTrabajador,
+                               keywords: 'solicitud, santa sofia',
+                               creator: 'Sistema de Solicitudes - Santa Sofia'
+                           });
+                           
+                           // Optimizar el PDF para reducir el tamaño
+                           try {
+                               doc.setCompression(true);
+                           } catch (error) {
+                               debugLog(`Error al comprimir PDF: ${error.message}`);
+                           }
+                           
+                           resolve(doc);
+                       };
+                   }
+               } catch (error) {
+                   debugLog(`Error al generar PDF: ${error.message}`);
+                   reject(error);
+               }
+           });
+       }
+       
+       // Inicializar formularios
+       function initForms() {
+           debugLog('Inicializando formularios...');
+           
+           // Botones de reset
+           const ctReset = document.getElementById('ct-reset');
+           if (ctReset) {
+               ctReset.addEventListener('click', function() {
+                   document.getElementById('cambio-turno-form').reset();
+                   
+                   if (signaturePads['ct']) {
+                       signaturePads['ct'].ctx.fillStyle = '#f8f8f8';
+                       signaturePads['ct'].ctx.fillRect(0, 0, signaturePads['ct'].canvas.width, signaturePads['ct'].canvas.height);
+                       signaturePads['ct'].hasSigned = false;
+                   }
+                   
+                   if (signaturePads['ct-sustituto']) {
+                       signaturePads['ct-sustituto'].ctx.fillStyle = '#f8f8f8';
+                       signaturePads['ct-sustituto'].ctx.fillRect(0, 0, signaturePads['ct-sustituto'].canvas.width, signaturePads['ct-sustituto'].canvas.height);
+                       signaturePads['ct-sustituto'].hasSigned = false;
+                   }
+                   
+                   loadSavedName();
+               });
+           }
+           
+           const plReset = document.getElementById('pl-reset');
+           if (plReset) {
+               plReset.addEventListener('click', function() {
+                   document.getElementById('permisos-licencias-form').reset();
+                   
+                   if (signaturePads['pl']) {
+                       signaturePads['pl'].ctx.fillStyle = '#f8f8f8';
+                       signaturePads['pl'].ctx.fillRect(0, 0, signaturePads['pl'].canvas.width, signaturePads['pl'].canvas.height);
+                       signaturePads['pl'].hasSigned = false;
+                   }
+                   
+                   loadSavedName();
+               });
+           }
+           
+           const opReset = document.getElementById('op-reset');
+           if (opReset) {
+               opReset.addEventListener('click', function() {
+                   document.getElementById('otros-permisos-form').reset();
+                   
+                   if (signaturePads['op']) {
+                       signaturePads['op'].ctx.fillStyle = '#f8f8f8';
+                       signaturePads['op'].ctx.fillRect(0, 0, signaturePads['op'].canvas.width, signaturePads['op'].canvas.height);
+                       signaturePads['op'].hasSigned = false;
+                   }
+                   
+                   loadSavedName();
+               });
+           }
+           
+           const apReset = document.getElementById('ap-reset');
+           if (apReset) {
+               apReset.addEventListener('click', function() {
+                   document.getElementById('asuntos-propios-form').reset();
+                   
+                   selectedDates = [];
+                   updateSelectedDates();
+                   renderCalendar();
+                   
+                   loadSavedName();
+               });
+           }
+           
+           // Texto para el correo electrónico
+           const emailFooterText = "Cualquier comunicación referente a la aceptación o denegación de esta solicitud se realice a través de la misma vía por la que se está tramitando en un plazo adecuado.";
+           
+           // Formulario de Cambio de Turno
+           const cambioTurnoForm = document.getElementById('cambio-turno-form');
+           if (cambioTurnoForm) {
+               cambioTurnoForm.addEventListener('submit', function(e) {
+                   debugLog('Formulario de Cambio de Turno enviado');
+                   e.preventDefault();
+                   
+                   const nombreTrabajador = document.getElementById('ct-nombre-trabajador').value;
+                   const nombreSustituto = document.getElementById('ct-nombre-sustituto').value;
+                   const fecha = document.getElementById('ct-fecha').value;
+                   const horarioInicio = document.getElementById('ct-horario-inicio').value;
+                   const horarioFin = document.getElementById('ct-horario-fin').value;
+                   
+                   if (!nombreTrabajador || !nombreSustituto || !fecha || !horarioInicio || !horarioFin) {
+                       showToast('Error', 'Por favor, complete todos los campos del formulario.', 'error');
+                       return;
+                   }
+                   
+                   if (!signaturePads['ct'] || !signaturePads['ct'].hasSigned) {
+                       showToast('Error', 'Por favor, firme el documento (trabajador) antes de enviarlo.', 'error');
+                       return;
+                   }
+                   
+                   if (!signaturePads['ct-sustituto'] || !signaturePads['ct-sustituto'].hasSigned) {
+                       showToast('Error', 'Por favor, firme el documento (sustituto) antes de enviarlo.', 'error');
+                       return;
+                   }
+                   
+                   try {
+                       localStorage.setItem('nombreTrabajador', nombreTrabajador);
+                   } catch (error) {
+                       debugLog(`Error al guardar nombre: ${error.message}`);
+                   }
+                   
+                   const fechaFormateada = formatDate(fecha);
+                   const fechaActual = getCurrentFormattedDate();
+                   
+                   showLoading(true);
+                   showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
+                   
+                   // Obtener firmas con calidad reducida para menor tamaño
+                   const firmaTrabajador = signaturePads['ct'].canvas.toDataURL('image/jpeg', 0.5);
+                   const firmaSustituto = signaturePads['ct-sustituto'].canvas.toDataURL('image/jpeg', 0.5);
+                   
+                   generateFormularioPDF({
+                       tipo: 'cambio-turno',
+                       nombreTrabajador,
+                       nombreSustituto,
+                       fecha: fechaFormateada,
+                       fechaActual: fechaActual,
+                       horarioInicio,
+                       horarioFin,
+                       firmaTrabajador: firmaTrabajador,
+                       firmaSustituto: firmaSustituto
+                   }).then(pdfDoc => {
+                       showLoading(false);
+                       
+                       pdfFileName = `CCOO ${fechaFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
+                       generatedPDF = pdfDoc;
+                       
+                       const subject = `Solicitud de Cambio de Turno - ${fechaFormateada} - ${nombreTrabajador}`;
+                       const body = `Hola, soy ${nombreTrabajador} y solicito un cambio de turno para el día ${fechaFormateada} en horario de ${horarioInicio} a ${horarioFin}, siendo sustituido por ${nombreSustituto}.
 
 Quedo a la espera de su confirmación y, en caso de necesitar cualquier aclaración adicional, estaré disponible para facilitar la información requerida.
 
@@ -1644,79 +1585,75 @@ Gracias de antemano por su atención.
 
 Un saludo,
 ${nombreTrabajador}`;
-                        
-                        emailData = { subject, body };
-                        
-                        const modal = document.getElementById('pdf-modal');
-                        if (modal) {
-                            modal.classList.add('show');
-                        }
-                    }).catch(error => {
-                        showLoading(false);
-                        debugLog(`Error al generar PDF: ${error.message}`);
-                        showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
-                    });
-                });
-            }
-            
-            // Formulario de Otros Permisos
-            const otrosPermisosForm = document.getElementById('otros-permisos-form');
-            if (otrosPermisosForm) {
-                otrosPermisosForm.addEventListener('submit', function(e) {
-                    debugLog('Formulario de Otros Permisos enviado');
-                    e.preventDefault();
-                    
-                    const nombreTrabajador = document.getElementById('op-nombre-trabajador').value;
-                    const fecha = document.getElementById('op-fecha').value;
-                    const horarioInicio = document.getElementById('op-horario-inicio').value;
-                    const horarioFin = document.getElementById('op-horario-fin').value;
-                    const motivos = document.getElementById('op-motivos').value;
-                    
-                    if (!nombreTrabajador || !fecha || !motivos) {
-                        showToast('Error', 'Por favor, complete todos los campos obligatorios del formulario.', 'error');
-                        return;
-                    }
-                    
-                    if (!signaturePads['op'] || !signaturePads['op'].hasSigned) {
-                        showToast('Error', 'Por favor, firme el documento antes de enviarlo.', 'error');
-                        return;
-                    }
-                    
-                    try {
-                        localStorage.setItem('nombreTrabajador', nombreTrabajador);
-                    } catch (error) {
-                        debugLog(`Error al guardar nombre: ${error.message}`);
-                    }
-                    
-                    const fechaFormateada = formatDate(fecha);
-                    const fechaActual = getCurrentFormattedDate();
-                    
-                    showLoading(true);
-                    showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
-                    
-                    generateFormularioPDF({
-                        tipo: 'otros-permisos',
-                        nombreTrabajador,
-                        fecha: fechaFormateada,
-                        fechaActual: fechaActual,
-                        horarioInicio,
-                        horarioFin,
-                        motivos,
-                        firma: signaturePads['op'].canvas.toDataURL('image/png')
-                    }).then(pdfDoc => {
-                        showLoading(false);
-                        
-                        pdfFileName = `CCOO ${fechaFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
-                        generatedPDF = pdfDoc;
-                        
-                        const subject = `Solicitud de Otro Permiso - ${fechaFormateada} - ${nombreTrabajador}`;
-                        let body = `Hola, soy ${nombreTrabajador} y solicito un permiso para el día ${fechaFormateada}`;
-                        
-                        if (horarioInicio && horarioFin) {
-                            body += ` en horario de ${horarioInicio} a ${horarioFin}`;
-                        }
-                        
-                        body += ` por los siguientes motivos: ${motivos}.
+                       
+                       emailData = { subject, body };
+                       
+                       const modal = document.getElementById('pdf-modal');
+                       if (modal) {
+                           modal.classList.add('show');
+                       }
+                   }).catch(error => {
+                       showLoading(false);
+                       debugLog(`Error al generar PDF: ${error.message}`);
+                       showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
+                   });
+               });
+           }
+           
+           // Formulario de Permisos y Licencias
+           const permisosLicenciasForm = document.getElementById('permisos-licencias-form');
+           if (permisosLicenciasForm) {
+               permisosLicenciasForm.addEventListener('submit', function(e) {
+                   debugLog('Formulario de Permisos y Licencias enviado');
+                   e.preventDefault();
+                   
+                   const nombreTrabajador = document.getElementById('pl-nombre-trabajador').value;
+                   const fechaInicio = document.getElementById('pl-fecha-inicio').value;
+                   const fechaFin = document.getElementById('pl-fecha-fin').value;
+                   const motivos = document.getElementById('pl-motivos').value;
+                   
+                   if (!nombreTrabajador || !fechaInicio || !fechaFin || !motivos) {
+                       showToast('Error', 'Por favor, complete todos los campos del formulario.', 'error');
+                       return;
+                   }
+                   
+                   if (!signaturePads['pl'] || !signaturePads['pl'].hasSigned) {
+                       showToast('Error', 'Por favor, firme el documento antes de enviarlo.', 'error');
+                       return;
+                   }
+                   
+                   try {
+                       localStorage.setItem('nombreTrabajador', nombreTrabajador);
+                   } catch (error) {
+                       debugLog(`Error al guardar nombre: ${error.message}`);
+                   }
+                   
+                   const fechaInicioFormateada = formatDate(fechaInicio);
+                   const fechaFinFormateada = formatDate(fechaFin);
+                   const fechaActual = getCurrentFormattedDate();
+                   
+                   showLoading(true);
+                   showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
+                   
+                   // Obtener firma con calidad reducida para menor tamaño
+                   const firma = signaturePads['pl'].canvas.toDataURL('image/jpeg', 0.5);
+                   
+                   generateFormularioPDF({
+                       tipo: 'permisos-licencias',
+                       nombreTrabajador,
+                       fechaInicio: fechaInicioFormateada,
+                       fechaFin: fechaFinFormateada,
+                       fechaActual: fechaActual,
+                       motivos,
+                       firma: firma
+                   }).then(pdfDoc => {
+                       showLoading(false);
+                       
+                       pdfFileName = `CCOO ${fechaInicioFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
+                       generatedPDF = pdfDoc;
+                       
+                       const subject = `Solicitud de Permiso o Licencia - ${fechaInicioFormateada} - ${nombreTrabajador}`;
+                       const body = `Hola, soy ${nombreTrabajador} y solicito un permiso/licencia desde el día ${fechaInicioFormateada} hasta el día ${fechaFinFormateada} por los siguientes motivos: ${motivos}.
 
 Quedo a la espera de su confirmación y, en caso de necesitar cualquier aclaración adicional, estaré disponible para facilitar la información requerida.
 
@@ -1726,52 +1663,137 @@ Gracias de antemano por su atención.
 
 Un saludo,
 ${nombreTrabajador}`;
-                        
-                        emailData = { subject, body };
-                        
-                        const modal = document.getElementById('pdf-modal');
-                        if (modal) {
-                            modal.classList.add('show');
-                        }
-                    }).catch(error => {
-                        showLoading(false);
-                        debugLog(`Error al generar PDF: ${error.message}`);
-                        showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
-                    });
-                });
-            }
-            
-            // Formulario de Asuntos Propios
-            const asuntosPropiosForm = document.getElementById('asuntos-propios-form');
-            if (asuntosPropiosForm) {
-                asuntosPropiosForm.addEventListener('submit', function(e) {
-                    debugLog('Formulario de Asuntos Propios enviado');
-                    e.preventDefault();
-                    
-                    const nombreTrabajador = document.getElementById('ap-nombre-trabajador').value;
-                    
-                    if (!nombreTrabajador) {
-                        showToast('Error', 'Por favor, ingrese su nombre completo.', 'error');
-                        return;
-                    }
-                    
-                    if (selectedDates.length === 0) {
-                        showToast('Error', 'Por favor, seleccione al menos una fecha para sus días de asuntos propios.', 'error');
-                        return;
-                    }
-                    
-                    try {
-                        localStorage.setItem('nombreTrabajador', nombreTrabajador);
-                    } catch (error) {
-                        debugLog(`Error al guardar nombre: ${error.message}`);
-                    }
-                    
-                    const fechasFormateadas = selectedDates.map(date => 
-                        date.toLocaleDateString('es-ES')
-                    ).join(', ');
-                    
-                    const subject = `Solicitud de Asuntos Propios - ${new Date().toLocaleDateString('es-ES')} - ${nombreTrabajador}`;
-                    const body = `Hola, espero que este mensaje le encuentre bien. Por la presente, solicito disfrutar del día de asuntos propios los días ${fechasFormateadas}.
+                       
+                       emailData = { subject, body };
+                       
+                       const modal = document.getElementById('pdf-modal');
+                       if (modal) {
+                           modal.classList.add('show');
+                       }
+                   }).catch(error => {
+                       showLoading(false);
+                       debugLog(`Error al generar PDF: ${error.message}`);
+                       showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
+                   });
+               });
+           }
+           
+           // Formulario de Otros Permisos
+           const otrosPermisosForm = document.getElementById('otros-permisos-form');
+           if (otrosPermisosForm) {
+               otrosPermisosForm.addEventListener('submit', function(e) {
+                   debugLog('Formulario de Otros Permisos enviado');
+                   e.preventDefault();
+                   
+                   const nombreTrabajador = document.getElementById('op-nombre-trabajador').value;
+                   const fecha = document.getElementById('op-fecha').value;
+                   const horarioInicio = document.getElementById('op-horario-inicio').value;
+                   const horarioFin = document.getElementById('op-horario-fin').value;
+                   const motivos = document.getElementById('op-motivos').value;
+                   
+                   if (!nombreTrabajador || !fecha || !motivos) {
+                       showToast('Error', 'Por favor, complete todos los campos obligatorios del formulario.', 'error');
+                       return;
+                   }
+                   
+                   if (!signaturePads['op'] || !signaturePads['op'].hasSigned) {
+                       showToast('Error', 'Por favor, firme el documento antes de enviarlo.', 'error');
+                       return;
+                   }
+                   
+                   try {
+                       localStorage.setItem('nombreTrabajador', nombreTrabajador);
+                   } catch (error) {
+                       debugLog(`Error al guardar nombre: ${error.message}`);
+                   }
+                   
+                   const fechaFormateada = formatDate(fecha);
+                   const fechaActual = getCurrentFormattedDate();
+                   
+                   showLoading(true);
+                   showToast('Procesando', 'Generando su solicitud, por favor espere...', 'success');
+                   
+                   // Obtener firma con calidad reducida para menor tamaño
+                   const firma = signaturePads['op'].canvas.toDataURL('image/jpeg', 0.5);
+                   
+                   generateFormularioPDF({
+                       tipo: 'otros-permisos',
+                       nombreTrabajador,
+                       fecha: fechaFormateada,
+                       fechaActual: fechaActual,
+                       horarioInicio,
+                       horarioFin,
+                       motivos,
+                       firma: firma
+                   }).then(pdfDoc => {
+                       showLoading(false);
+                       
+                       pdfFileName = `CCOO ${fechaFormateada.replace(/\//g, '-')} ${nombreTrabajador}.pdf`;
+                       generatedPDF = pdfDoc;
+                       
+                       const subject = `Solicitud de Otro Permiso - ${fechaFormateada} - ${nombreTrabajador}`;
+                       let body = `Hola, soy ${nombreTrabajador} y solicito un permiso para el día ${fechaFormateada}`;
+                       
+                       if (horarioInicio && horarioFin) {
+                           body += ` en horario de ${horarioInicio} a ${horarioFin}`;
+                       }
+                       
+                       body += ` por los siguientes motivos: ${motivos}.
+
+Quedo a la espera de su confirmación y, en caso de necesitar cualquier aclaración adicional, estaré disponible para facilitar la información requerida.
+
+${emailFooterText}
+
+Gracias de antemano por su atención.
+
+Un saludo,
+${nombreTrabajador}`;
+                       
+                       emailData = { subject, body };
+                       
+                       const modal = document.getElementById('pdf-modal');
+                       if (modal) {
+                           modal.classList.add('show');
+                       }
+                   }).catch(error => {
+                       showLoading(false);
+                       debugLog(`Error al generar PDF: ${error.message}`);
+                       showToast('Error', 'Ha ocurrido un error al generar el PDF. Por favor, inténtelo de nuevo.', 'error');
+                   });
+               });
+           }
+           
+           // Formulario de Asuntos Propios
+           const asuntosPropiosForm = document.getElementById('asuntos-propios-form');
+           if (asuntosPropiosForm) {
+               asuntosPropiosForm.addEventListener('submit', function(e) {
+                   debugLog('Formulario de Asuntos Propios enviado');
+                   e.preventDefault();
+                   
+                   const nombreTrabajador = document.getElementById('ap-nombre-trabajador').value;
+                   
+                   if (!nombreTrabajador) {
+                       showToast('Error', 'Por favor, ingrese su nombre completo.', 'error');
+                       return;
+                   }
+                   
+                   if (selectedDates.length === 0) {
+                       showToast('Error', 'Por favor, seleccione al menos una fecha para sus días de asuntos propios.', 'error');
+                       return;
+                   }
+                   
+                   try {
+                       localStorage.setItem('nombreTrabajador', nombreTrabajador);
+                   } catch (error) {
+                       debugLog(`Error al guardar nombre: ${error.message}`);
+                   }
+                   
+                   const fechasFormateadas = selectedDates.map(date => 
+                       date.toLocaleDateString('es-ES')
+                   ).join(', ');
+                   
+                   const subject = `Solicitud de Asuntos Propios - ${new Date().toLocaleDateString('es-ES')} - ${nombreTrabajador}`;
+                   const body = `Hola, espero que este mensaje le encuentre bien. Por la presente, solicito disfrutar del día de asuntos propios los días ${fechasFormateadas}.
 
 Quedo a la espera de su confirmación y, en caso de necesitar alguna aclaración adicional, estoy disponible para facilitar la información necesaria.
 
@@ -1781,40 +1803,41 @@ Gracias de antemano por su atención.
 
 Un saludo,
 ${nombreTrabajador}`;
-                    
-                    const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    window.location.href = mailtoLink;
-                    
-                    showToast('Solicitud generada', 'Su solicitud de asuntos propios ha sido generada correctamente. Se abrirá su cliente de correo para enviarla.', 'success');
-                });
-            }
-            
-            debugLog('Formularios inicializados correctamente');
-        }
-        
-        // Inicializar todo
-        initTabs();
-        initSignaturePads();
-        initCalendar();
-        initForms();
-        initModal();
-        loadSavedName();
-        
-        debugLog('Aplicación inicializada correctamente');
-    }
-    
-    // Inicializar botón de debug
-    document.getElementById('debug-btn').addEventListener('click', function() {
-        const debugConsole = document.getElementById('debug-console');
-        if (debugConsole.style.display === 'none') {
-            debugConsole.style.display = 'block';
-            this.textContent = 'Ocultar Consola';
-        } else {
-            debugConsole.style.display = 'none';
-            this.textContent = 'Mostrar Consola';
-        }
-    });
+                   
+                   const mailtoLink = `mailto:${emailDestino}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                   window.location.href = mailtoLink;
+                   
+                   showToast('Solicitud generada', 'Su solicitud de asuntos propios ha sido generada correctamente. Se abrirá su cliente de correo para enviarla.', 'success');
+               });
+           }
+           
+           debugLog('Formularios inicializados correctamente');
+       }
+       
+       // Inicializar todo
+       initTabs();
+       initSignaturePads();
+       initCalendar();
+       initForms();
+       initModal();
+       loadSavedName();
+       
+       debugLog('Aplicación inicializada correctamente');
+   }
+   
+   // Inicializar botón de debug
+   document.getElementById('debug-btn').addEventListener('click', function() {
+       const debugConsole = document.getElementById('debug-console');
+       if (debugConsole.style.display === 'none') {
+           debugConsole.style.display = 'block';
+           this.textContent = 'Ocultar Consola';
+       } else {
+           debugConsole.style.display = 'none';
+           this.textContent = 'Mostrar Consola';
+       }
+   });
 });
 </script>
 </body>
 </html>
+
