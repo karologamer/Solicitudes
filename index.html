@@ -1101,82 +1101,80 @@ document.addEventListener('DOMContentLoaded', function() {
                        doc.setFontSize(11);
                        doc.setTextColor(0, 0, 0);
 
-                       // En la función generateFormularioPDF, dentro de addContentWithTemplate, reemplazar el código para "cambio-turno" con:
+                       // En la función generateFormularioPDF, dentro de addContentWithTemplate, reemplazar el código para "cambio-turno" with:
 
 if (data.tipo === 'cambio-turno') {
   debugLog('Generando PDF de cambio de turno');
   
-  // Marcar la casilla de cambio de turno (X) - Subido 1 renglón
+  // Marcar la casilla de cambio de turno (X) - Subido a y=34
   doc.setFillColor(0, 0, 0);
-  doc.rect(14, 29, 3, 3, 'F'); 
+  doc.rect(14, 34, 3, 3, 'F'); 
   
-  // Datos del trabajador - Subir 1 renglón
+  // Datos del trabajador - Mantener posición
   doc.text(data.nombreTrabajador, 42, 41); 
   
-  // Datos del trabajador sustituto - Subido 1 renglón y movido 1 espacio a la derecha
+  // Datos del trabajador sustituto - Mantener posición
   doc.text(data.nombreSustituto, 54, 47); 
   
-  // Fecha del cambio, hora inicio y fin - Subido 2 renglones
+  // Fecha del cambio, hora inicio y fin - Mantener posición
   const fechaParts = data.fecha.split('/');
-  doc.text(fechaParts[0], 35, 51); // día
-  doc.text(fechaParts[1], 42, 51); // mes
-  doc.text(fechaParts[2], 50, 51); // año
+  doc.text(fechaParts[0], 35, 53); // día
+  doc.text(fechaParts[1], 42, 53); // mes
+  doc.text(fechaParts[2], 50, 53); // año
   
-  // Horario - Subido 2 renglones
-  doc.text(data.horarioInicio, 122, 51); 
-  doc.text(data.horarioFin, 153, 51); 
+  // Horario - Mantener posición
+  doc.text(data.horarioInicio, 122, 53); 
+  doc.text(data.horarioFin, 153, 53); 
   
-  // Fecha actual
-  doc.text(`Fecha: ${data.fechaActual}`, 150, 40);
+  // Fecha actual - Quitada
   
-  // Firmas - Subido 5 renglones y movido 3 espacios a la derecha
+  // Firmas - Mantener posición
   if (data.firmaTrabajador) {
-      doc.addImage(data.firmaTrabajador, "JPEG", 37, 53, 30, 15, undefined, 'FAST', 0);
-      doc.text(data.nombreTrabajador, 37, 73);
+      doc.addImage(data.firmaTrabajador, "JPEG", 37, 59, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreTrabajador, 37, 78);
   }
   
   if (data.firmaSustituto) {
-      doc.addImage(data.firmaSustituto, "JPEG", 124, 53, 30, 15, undefined, 'FAST', 0);
-      doc.text(data.nombreSustituto, 124, 73);
+      doc.addImage(data.firmaSustituto, "JPEG", 124, 59, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreSustituto, 124, 78);
   }
 } 
 else if (data.tipo === 'permisos-licencias') {
   debugLog('Generando PDF de permisos y licencias');
   
-  // Marcar la casilla de permiso o licencia (X) - Subido 1 espacio
+  // Marcar la casilla de permiso o licencia (X) - Mantener posición
   doc.setFillColor(0, 0, 0);
   doc.rect(14, 94, 3, 3, 'F');
   
-  // Datos del trabajador - Subido 1 renglón
-  doc.text(data.nombreTrabajador, 42, 101);
+  // Datos del trabajador - Mantener posición
+  doc.text(data.nombreTrabajador, 42, 103);
   
-  // Fecha actual
-  doc.text(`Fecha: ${data.fechaActual}`, 150, 95);
+  // Fecha actual - Quitada
   
-  // Fechas de rango (inicio y fin) - Subido 1 renglón y movido 1 espacio a la derecha
+  // Fechas de rango (inicio y fin) - Mantener posición
   const fechaInicioParts = data.fechaInicio.split('/');
   const fechaFinParts = data.fechaFin.split('/');
   
-  // Fecha de inicio - Subido 1 renglón y movido 1 espacio a la derecha
-  doc.text(fechaInicioParts[0], 34, 127);
-  doc.text(fechaInicioParts[1], 41, 127);
-  doc.text(fechaInicioParts[2], 49, 127);
+  // Fecha de inicio - Mantener posición
+  doc.text(fechaInicioParts[0], 34, 129);
+  doc.text(fechaInicioParts[1], 41, 129);
+  doc.text(fechaInicioParts[2], 49, 129);
   
-  // Fecha de fin - Subido 1 renglón y movido 1 espacio a la derecha
-  doc.text(fechaFinParts[0], 117, 127);
-  doc.text(fechaFinParts[1], 124, 127);
-  doc.text(fechaFinParts[2], 132, 127);
+  // Fecha de fin - Mantener posición
+  doc.text(fechaFinParts[0], 117, 129);
+  doc.text(fechaFinParts[1], 124, 129);
+  doc.text(fechaFinParts[2], 132, 129);
   
-  // Motivos - Movido 6 espacios a la izquierda y subido 3 renglones
+  // Motivos - Movido a x=15
   const motivos = data.motivos;
   const maxWidth = 120;
   const lines = doc.splitTextToSize(motivos, maxWidth);
-  doc.text(lines, 30, 146);
+  doc.text(lines, 15, 148);
   
-  // Firma - Subido 4 renglones y movido 2 espacios a la derecha
+  // Firma - Mantener posición
   if (data.firma) {
-      doc.addImage(data.firma, "JPEG", 125, 154, 30, 15, undefined, 'FAST', 0);
-      doc.text(data.nombreTrabajador, 125, 174);
+      doc.addImage(data.firma, "JPEG", 125, 156, 30, 15, undefined, 'FAST', 0);
+      doc.text(data.nombreTrabajador, 125, 175);
   }
 } 
 else if (data.tipo === 'otros-permisos') {
@@ -1189,24 +1187,20 @@ else if (data.tipo === 'otros-permisos') {
   // Datos del trabajador
   doc.text(data.nombreTrabajador, 42, 195);
   
-  // Fecha actual
-  doc.text(`Fecha: ${data.fechaActual}`, 150, 175);
+  // Fecha actual - Quitada
   
-  // Fecha del permiso - Movido 6 espacios a la izquierda
-  doc.text(`Fecha del permiso: ${data.fecha}`, 33, 201);
-  
-  // Horario (si aplica) - Movido 6 espacios a la izquierda
-  let yPos = 207;
+  // Fecha del permiso y horario en el mismo renglón
+  let infoText = `Fecha del permiso: ${data.fecha}`;
   if (data.horarioInicio && data.horarioFin) {
-      doc.text(`Horario: ${data.horarioInicio} a ${data.horarioFin}`, 33, yPos);
-      yPos += 6;
+      infoText += ` - Horario: ${data.horarioInicio} a ${data.horarioFin}`;
   }
+  doc.text(infoText, 33, 201);
   
-  // Motivo - Movido 6 espacios a la izquierda
+  // Motivo - Movido a x=15
   const lines = doc.splitTextToSize(`Motivo: ${data.motivos}`, 120);
-  doc.text(lines, 33, yPos);
+  doc.text(lines, 15, 207);
   
-  // Firma - Mover 4 espacios a la derecha
+  // Firma - Mantener posición
   if (data.firma) {
       doc.addImage(data.firma, "JPEG", 127, 217, 30, 15, undefined, 'FAST', 0);
       doc.text(data.nombreTrabajador, 127, 237);
